@@ -13,7 +13,7 @@ public class TigerMovement : MonoBehaviour
     private float _driftForce;
     public Vector2 relativeForce;
 
-    private List<GameObject> marc = new List<GameObject>();
+    private List<GameObject> rainbows = new List<GameObject>();
     [SerializeField] private Transform rainbowPoint;
     // Start is called before the first frame update
 
@@ -66,18 +66,13 @@ public class TigerMovement : MonoBehaviour
     }
     void AddMarc()
     {
-        GameObject rightWheel = GameObject.Instantiate(Resources.Load("WheelMarc")) as GameObject;
-        GameObject leftWheel = GameObject.Instantiate(Resources.Load("WheelMarc")) as GameObject;
+        GameObject newRainbow = GameObject.Instantiate(Resources.Load("Rainbow")) as GameObject;
 
-        rightWheel.transform.position = rw.position;
-        rightWheel.transform.rotation = rw.rotation;
-        leftWheel.transform.position = lw.position;
-        leftWheel.transform.rotation = lw.rotation;
+        newRainbow.transform.position = rainbowPoint.position;
+        newRainbow.transform.rotation = rainbowPoint.rotation;
 
-        marc.Add(rightWheel);
-        marc.Add(leftWheel);
+        rainbows.Add(newRainbow);
 
-        Destroy(rightWheel, 5f);
-        Destroy(leftWheel, 5f);
+        Destroy(newRainbow, 5f);
     }
 }
