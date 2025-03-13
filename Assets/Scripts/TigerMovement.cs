@@ -12,10 +12,9 @@ public class TigerMovement : MonoBehaviour
     private float _aux;
     private float _driftForce;
     public Vector2 relativeForce;
-    [SerializeField] private int player = 0;
 
     private List<GameObject> marc = new List<GameObject>();
-    [SerializeField] private Transform rw, lw;
+    [SerializeField] private Transform rainbowPoint;
     // Start is called before the first frame update
 
     void FixedUpdate()
