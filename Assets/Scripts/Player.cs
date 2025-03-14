@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private GameObject bullet;
     private Rigidbody2D _rb2d;
+    private float _mousePos;
 
     void Awake()
     {
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        _rb2d.rotation = -Input.mousePosition.x;
         if(Input.GetKeyDown(KeyCode.Space)) {
             Shoot();
         }
@@ -27,7 +29,6 @@ public class Player : MonoBehaviour
     void Shoot()
     {
         if (bullet == null) return;
-        GameObject newBullet = Instantiate(bullet, _rb2d.transform.position * Vector2.up, Quaternion.identity);
-        Destroy(newBullet,3);
+        GameObject newBullet = Instantiate(bullet, _rb2d.transform.position, _rb2d.transform.rotation);
     }
 }

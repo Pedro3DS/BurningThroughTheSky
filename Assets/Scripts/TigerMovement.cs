@@ -5,6 +5,8 @@ using UnityEngine;
 public class TigerMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D _rb2d;
+    [SerializeField] private Rigidbody2D _playerRb2d;
+    [SerializeField] private Vector3 _playerNewPos;
     [SerializeField] private float _maxSpeed = 10f;
     [SerializeField] private float _acceleration = 10f;
     [SerializeField] private float _target = 1f;
@@ -22,6 +24,7 @@ public class TigerMovement : MonoBehaviour
         Movement();
    
         ClampSpeed();
+        _playerRb2d.position = new Vector3(_rb2d.position.x + _playerNewPos.x,_rb2d.position.y + _playerNewPos.y, _playerNewPos.z);
     }
 
     void HandleInput()
@@ -63,9 +66,10 @@ public class TigerMovement : MonoBehaviour
         currentSpeed = _rb2d.velocity.magnitude;
     }
 
-    // Optional: Method for adding special effects (like a rainbow trail)
+
     // void AddMarc()
     // {
+
     //     GameObject newRainbow = Instantiate(Resources.Load("Rainbow")) as GameObject;
     //     newRainbow.transform.position = rainbowPoint.position;
     //     newRainbow.transform.rotation = rainbowPoint.rotation;
