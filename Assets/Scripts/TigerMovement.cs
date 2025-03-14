@@ -5,74 +5,70 @@ using UnityEngine;
 public class TigerMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D _rb2d;
-    [SerializeField] private float _maxSpeed, _acceleration, _target;
+    [SerializeField] private float _maxSpeed = 10f;
+    [SerializeField] private float _acceleration = 10f;
+    [SerializeField] private float _target = 1f;
     public float currentSpeed;
-    private Vector2 _speed;
-    public float hori, vert;
-    private float _aux;
+    private Vector2 _movementInput;
     private float _driftForce;
     public Vector2 relativeForce;
 
-    private List<GameObject> rainbows = new List<GameObject>();
-    [SerializeField] private Transform rainbowPoint;
-    // Start is called before the first frame update
-
     void FixedUpdate()
     {
-            hori = -Input.GetAxis("Horizontal");
+ 
+        HandleInput();
 
 
-        // vert = Input.GetAxis("Vertical");
+        Movement();
+   
+        ClampSpeed();
+    }
 
-        _speed = transform.up * _acceleration;
+    void HandleInput()
+    {
+        _movementInput.x = Input.GetAxis("Horizontal");
+        _movementInput.y = Input.GetAxis("Vertical"); 
+    }
 
-        _rb2d.AddForce(_speed);
+    void Movement()
+    {
+        _rb2d.AddForce(_movementInput * _acceleration);
+        float rotationInput = _movementInput.y * _target;
+        //AdjustRotation(rotationInput);
+    }
 
-        _aux = Vector2.Dot(_rb2d.velocity, _rb2d.GetRelativeVector(Vector2.up));
+    void AdjustRotation(float rotationInput)
+    {
+        // Calculate rotation based on the direction of movement
+        float velocityMagnitude = _rb2d.velocity.magnitude;
+        float rotationSpeed = rotationInput * (velocityMagnitude / _maxSpeed);
 
-        if (_aux >= 0.0f)
+        if (_rb2d.velocity.magnitude >= 0f)
         {
-
-
-            _rb2d.rotation += hori * _target * (_rb2d.velocity.magnitude / _maxSpeed * 0.8f);
-
-
+            _rb2d.rotation += rotationSpeed;
         }
         else
         {
-
-            _rb2d.rotation -= hori * _target * (_rb2d.velocity.magnitude / _maxSpeed * 0.8f);
-
+            _rb2d.rotation -= rotationSpeed;
         }
-        _driftForce = Vector2.Dot(_rb2d.velocity, _rb2d.GetRelativeVector(Vector2.left)) * 2.0f;
+    }
 
-        relativeForce = Vector2.right * _driftForce;
-
-        _rb2d.AddForce(_rb2d.GetRelativeVector(relativeForce));
-
+    void ClampSpeed()
+    {
         if (_rb2d.velocity.magnitude > _maxSpeed)
         {
-
             _rb2d.velocity = _rb2d.velocity.normalized * _maxSpeed;
-
         }
 
         currentSpeed = _rb2d.velocity.magnitude;
-
-        if (_rb2d.velocity.magnitude <= 4.9f)
-        {
-            AddMarc();
-        }
     }
-    void AddMarc()
-    {
-        GameObject newRainbow = GameObject.Instantiate(Resources.Load("Rainbow")) as GameObject;
 
-        newRainbow.transform.position = rainbowPoint.position;
-        newRainbow.transform.rotation = rainbowPoint.rotation;
-
-        rainbows.Add(newRainbow);
-
-        Destroy(newRainbow, 5f);
-    }
+    // Optional: Method for adding special effects (like a rainbow trail)
+    // void AddMarc()
+    // {
+    //     GameObject newRainbow = Instantiate(Resources.Load("Rainbow")) as GameObject;
+    //     newRainbow.transform.position = rainbowPoint.position;
+    //     newRainbow.transform.rotation = rainbowPoint.rotation;
+    //     Destroy(newRainbow, 5f); // Optional: destroy after 5 seconds
+    // }
 }

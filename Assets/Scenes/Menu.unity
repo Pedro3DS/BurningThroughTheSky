@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press START to play
+  m_text: Press START To Play The Game
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ad75a1d5ffca241418a1f37f9b5510c5, type: 2}
   m_sharedMaterial: {fileID: -4390906223164179415, guid: ad75a1d5ffca241418a1f37f9b5510c5, type: 2}
@@ -207,7 +207,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 40
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -747,7 +747,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d98ac109a1d4a0d4a9e2698c83fdb1f3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b869c98baf589144fb793311e2e98b84, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
