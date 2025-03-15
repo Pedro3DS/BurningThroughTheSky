@@ -24,13 +24,13 @@ public class TigerMovement : MonoBehaviour
         Movement();
    
         ClampSpeed();
-        _playerRb2d.position = new Vector3(_rb2d.position.x + _playerNewPos.x,_rb2d.position.y + _playerNewPos.y, _playerNewPos.z);
+        _playerRb2d.position = new Vector3(_rb2d.position.x + _playerNewPos.x,_rb2d.position.y + _playerNewPos.y,transform.position.z - _playerNewPos.z);
     }
 
     void HandleInput()
     {
-        _movementInput.x = Input.GetAxis("Horizontal");
-        _movementInput.y = Input.GetAxis("Vertical"); 
+        _movementInput.x = Input.GetAxis("TigerHorizontal");
+        _movementInput.y = Input.GetAxis("TigerVertical"); 
     }
 
     void Movement()
