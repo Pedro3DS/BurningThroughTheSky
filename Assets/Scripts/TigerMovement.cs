@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TigerMovement : MonoBehaviour
@@ -9,51 +8,36 @@ public class TigerMovement : MonoBehaviour
     [SerializeField] private Vector3 _playerNewPos;
     [SerializeField] private float _maxSpeed = 10f;
     [SerializeField] private float _acceleration = 10f;
-    [SerializeField] private float _target = 1f;
-    public float currentSpeed;
+    [SerializeField] private float _tiltAmount = 15f;
+    [SerializeField] private float _tiltSpeed = 5f;
     private Vector2 _movementInput;
-    private float _driftForce;
-    public Vector2 relativeForce;
+    public float currentSpeed;
 
     void FixedUpdate()
     {
- 
         HandleInput();
-
-
         Movement();
-   
         ClampSpeed();
-        _playerRb2d.position = new Vector3(_rb2d.position.x + _playerNewPos.x,_rb2d.position.y + _playerNewPos.y,transform.position.z - _playerNewPos.z);
+        ApplyTilt();
+        UpdatePlayerPosition();
     }
 
     void HandleInput()
     {
-        _movementInput.x = Input.GetAxis("TigerHorizontal");
-        _movementInput.y = Input.GetAxis("TigerVertical"); 
+        _movementInput.x = Input.GetAxis("Horizontal");
+        _movementInput.y = Input.GetAxis("Vertical"); 
     }
 
     void Movement()
     {
         _rb2d.AddForce(_movementInput * _acceleration);
-        float rotationInput = _movementInput.y * _target;
-        //AdjustRotation(rotationInput);
     }
 
-    void AdjustRotation(float rotationInput)
+    void ApplyTilt()
     {
-        // Calculate rotation based on the direction of movement
-        float velocityMagnitude = _rb2d.velocity.magnitude;
-        float rotationSpeed = rotationInput * (velocityMagnitude / _maxSpeed);
-
-        if (_rb2d.velocity.magnitude >= 0f)
-        {
-            _rb2d.rotation += rotationSpeed;
-        }
-        else
-        {
-            _rb2d.rotation -= rotationSpeed;
-        }
+        float targetTilt = _movementInput.y * _tiltAmount;
+        float newRotationZ = Mathf.LerpAngle(transform.eulerAngles.z, targetTilt, _tiltSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.Euler(0, 0, newRotationZ);
     }
 
     void ClampSpeed()
@@ -62,17 +46,11 @@ public class TigerMovement : MonoBehaviour
         {
             _rb2d.velocity = _rb2d.velocity.normalized * _maxSpeed;
         }
-
         currentSpeed = _rb2d.velocity.magnitude;
     }
 
-
-    // void AddMarc()
-    // {
-
-    //     GameObject newRainbow = Instantiate(Resources.Load("Rainbow")) as GameObject;
-    //     newRainbow.transform.position = rainbowPoint.position;
-    //     newRainbow.transform.rotation = rainbowPoint.rotation;
-    //     Destroy(newRainbow, 5f); // Optional: destroy after 5 seconds
-    // }
+    void UpdatePlayerPosition()
+    {
+        _playerRb2d.position = _rb2d.position + (Vector2)_playerNewPos;
+    }
 }

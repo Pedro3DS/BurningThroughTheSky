@@ -420,7 +420,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &543920833
 Transform:
   m_ObjectHideFlags: 0
@@ -555,9 +555,9 @@ MonoBehaviour:
   _playerNewPos: {x: 0.14, y: 0.77, z: 1}
   _maxSpeed: 5
   _acceleration: 2
-  _target: 1
+  _tiltAmount: 15
+  _tiltSpeed: 5
   currentSpeed: 0
-  relativeForce: {x: 0, y: 0}
 --- !u!61 &543920838
 BoxCollider2D:
   m_ObjectHideFlags: 0

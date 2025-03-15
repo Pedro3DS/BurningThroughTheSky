@@ -7,52 +7,38 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private GameObject bullet;
     private Rigidbody2D _rb2d;
-    private float _mousePos;
-
+    private float _rotationZ;
+    
     void Awake()
     {
-        _rb2d = gameObject.GetComponent<Rigidbody2D>();
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+        _rb2d = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        float rotationValue = Input.GetAxis("Horizontal");
-        // _rb2d.rotation = Input.GetAxis("Horizontal");
-        if(Input.GetAxis("Horizontal") != 0){
-            if(rotationValue < 0){
-                    float rotation = -Input.GetAxis("Horizontal")* 180;
-                    _rb2d.rotation =rotation;
-                if(transform.rotation.y >= -180){
-                    // _rb2d.rotation = rotation;
-                    // if(rotation >= 90){
-                    //     _rb2d.rotation = 0;
-                    //     transform.rotation = Quaternion.Euler(transform.rotation.x,180f,transform.rotation.z);
-                    // }
-                }
-                
-            }else{
-                float rotation = Input.GetAxis("Horizontal")* 180;
-                    _rb2d.rotation =rotation;
-            }
-            // if(_rb2d.rotation < 0 || _rb2d.rotation > 180){
+        float rotationValue = -Input.GetAxis("PlayerHorizontal");
 
-            // }
+        if (rotationValue != 0)
+        {
+            // Calcula a rotação desejada no eixo Z
+            _rotationZ += rotationValue * 200f * Time.deltaTime; // Multiplica para controlar a velocidade
+            _rotationZ = Mathf.Clamp(_rotationZ, 0f, 180f); // Limita a rotação
 
+            // Verifica se precisa inverter o eixo Y
+            bool flipY = _rotationZ > 90f ;
+            transform.rotation = Quaternion.Euler(0, 0, _rotationZ);
         }
-        if(Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Fire1")) {
+
+        // Disparar somente se a rotação estiver entre 0 e 180 graus
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Fire1")) && Mathf.Abs(_rotationZ) <= 180)
+        {
             Shoot();
         }
-        
     }
+
     void Shoot()
     {
         if (bullet == null) return;
-        GameObject newBullet = Instantiate(bullet, _rb2d.transform.position, _rb2d.transform.rotation);
+        Instantiate(bullet, transform.position, transform.rotation);
     }
 }
