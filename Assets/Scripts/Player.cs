@@ -41,4 +41,10 @@ public class Player : MonoBehaviour
         if (bullet == null) return;
         Instantiate(bullet, transform.position, transform.rotation);
     }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Asteroid")){
+            Destroy(gameObject);
+        }
+    }
 }

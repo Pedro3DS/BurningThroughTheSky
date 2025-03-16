@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Shoot1
+  - Asteroid
   layers:
   - Default
   - TransparentFX
