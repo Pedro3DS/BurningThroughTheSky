@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 11405532}
   - component: {fileID: 11405531}
   - component: {fileID: 11405530}
+  - component: {fileID: 11405533}
   m_Layer: 0
   m_Name: asteroid (46)
   m_TagString: Asteroid
@@ -213,7 +214,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -271,6 +272,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &11405533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11405528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &56458188
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,6 +327,7 @@ GameObject:
   - component: {fileID: 123298927}
   - component: {fileID: 123298926}
   - component: {fileID: 123298925}
+  - component: {fileID: 123298928}
   m_Layer: 0
   m_Name: asteroid (28)
   m_TagString: Asteroid
@@ -392,7 +406,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -450,6 +464,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &123298928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123298923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &133245964
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,6 +488,7 @@ GameObject:
   - component: {fileID: 133245968}
   - component: {fileID: 133245967}
   - component: {fileID: 133245966}
+  - component: {fileID: 133245969}
   m_Layer: 0
   m_Name: asteroid (26)
   m_TagString: Asteroid
@@ -540,7 +567,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -598,6 +625,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &133245969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133245964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &171386263
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,6 +680,7 @@ GameObject:
   - component: {fileID: 198579950}
   - component: {fileID: 198579949}
   - component: {fileID: 198579948}
+  - component: {fileID: 198579951}
   m_Layer: 0
   m_Name: asteroid (21)
   m_TagString: Asteroid
@@ -719,7 +759,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -777,6 +817,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &198579951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198579946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &275663746
 GameObject:
   m_ObjectHideFlags: 0
@@ -789,6 +841,7 @@ GameObject:
   - component: {fileID: 275663750}
   - component: {fileID: 275663749}
   - component: {fileID: 275663748}
+  - component: {fileID: 275663751}
   m_Layer: 0
   m_Name: asteroid (20)
   m_TagString: Asteroid
@@ -867,7 +920,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -925,6 +978,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &275663751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275663746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &279496764
 GameObject:
   m_ObjectHideFlags: 0
@@ -999,6 +1064,7 @@ GameObject:
   - component: {fileID: 324400247}
   - component: {fileID: 324400246}
   - component: {fileID: 324400245}
+  - component: {fileID: 324400248}
   m_Layer: 0
   m_Name: asteroid (42)
   m_TagString: Asteroid
@@ -1077,7 +1143,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1135,6 +1201,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &324400248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 324400243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &405773128
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,6 +1225,7 @@ GameObject:
   - component: {fileID: 405773132}
   - component: {fileID: 405773131}
   - component: {fileID: 405773130}
+  - component: {fileID: 405773133}
   m_Layer: 0
   m_Name: asteroid (7)
   m_TagString: Asteroid
@@ -1225,7 +1304,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1283,6 +1362,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &405773133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 405773128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &469508442
 GameObject:
   m_ObjectHideFlags: 0
@@ -1295,6 +1386,7 @@ GameObject:
   - component: {fileID: 469508446}
   - component: {fileID: 469508445}
   - component: {fileID: 469508444}
+  - component: {fileID: 469508447}
   m_Layer: 0
   m_Name: asteroid (8)
   m_TagString: Asteroid
@@ -1373,7 +1465,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1431,6 +1523,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &469508447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 469508442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &484748591
 GameObject:
   m_ObjectHideFlags: 0
@@ -1443,6 +1547,7 @@ GameObject:
   - component: {fileID: 484748595}
   - component: {fileID: 484748594}
   - component: {fileID: 484748593}
+  - component: {fileID: 484748596}
   m_Layer: 0
   m_Name: asteroid (44)
   m_TagString: Asteroid
@@ -1521,7 +1626,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1579,6 +1684,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &484748596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 484748591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &486868909
 GameObject:
   m_ObjectHideFlags: 0
@@ -1591,6 +1708,7 @@ GameObject:
   - component: {fileID: 486868913}
   - component: {fileID: 486868912}
   - component: {fileID: 486868911}
+  - component: {fileID: 486868914}
   m_Layer: 0
   m_Name: asteroid (35)
   m_TagString: Asteroid
@@ -1669,7 +1787,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1727,6 +1845,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &486868914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486868909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1892,6 +2022,7 @@ GameObject:
   - component: {fileID: 529910863}
   - component: {fileID: 529910862}
   - component: {fileID: 529910861}
+  - component: {fileID: 529910864}
   m_Layer: 0
   m_Name: asteroid (2)
   m_TagString: Asteroid
@@ -1970,7 +2101,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2028,6 +2159,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &529910864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529910859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &543920832
 GameObject:
   m_ObjectHideFlags: 0
@@ -2043,7 +2186,7 @@ GameObject:
   - component: {fileID: 543920838}
   m_Layer: 0
   m_Name: Tiger
-  m_TagString: Untagged
+  m_TagString: Tiger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2393,6 +2536,7 @@ GameObject:
   - component: {fileID: 602040232}
   - component: {fileID: 602040231}
   - component: {fileID: 602040230}
+  - component: {fileID: 602040233}
   m_Layer: 0
   m_Name: asteroid (45)
   m_TagString: Asteroid
@@ -2471,7 +2615,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2529,6 +2673,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &602040233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 602040228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &615670057
 GameObject:
   m_ObjectHideFlags: 0
@@ -2541,6 +2697,7 @@ GameObject:
   - component: {fileID: 615670061}
   - component: {fileID: 615670060}
   - component: {fileID: 615670059}
+  - component: {fileID: 615670062}
   m_Layer: 0
   m_Name: asteroid (9)
   m_TagString: Asteroid
@@ -2619,7 +2776,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2677,6 +2834,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &615670062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615670057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &617605141
 GameObject:
   m_ObjectHideFlags: 0
@@ -2689,6 +2858,7 @@ GameObject:
   - component: {fileID: 617605145}
   - component: {fileID: 617605144}
   - component: {fileID: 617605143}
+  - component: {fileID: 617605146}
   m_Layer: 0
   m_Name: asteroid (19)
   m_TagString: Asteroid
@@ -2767,7 +2937,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2825,6 +2995,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &617605146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617605141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -2920,9 +3102,10 @@ GameObject:
   - component: {fileID: 634947448}
   - component: {fileID: 634947449}
   - component: {fileID: 634947450}
+  - component: {fileID: 634947451}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3055,6 +3238,41 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!70 &634947451
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634947444}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.006435275, y: -0.072931886}
+  m_Size: {x: 0.6782417, y: 1.0416362}
+  m_Direction: 0
 --- !u!1 &642278947
 GameObject:
   m_ObjectHideFlags: 0
@@ -3067,6 +3285,7 @@ GameObject:
   - component: {fileID: 642278951}
   - component: {fileID: 642278950}
   - component: {fileID: 642278949}
+  - component: {fileID: 642278952}
   m_Layer: 0
   m_Name: asteroid (6)
   m_TagString: Asteroid
@@ -3145,7 +3364,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -3203,6 +3422,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &642278952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642278947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &643342811
 GameObject:
   m_ObjectHideFlags: 0
@@ -3215,6 +3446,7 @@ GameObject:
   - component: {fileID: 643342815}
   - component: {fileID: 643342814}
   - component: {fileID: 643342813}
+  - component: {fileID: 643342816}
   m_Layer: 0
   m_Name: asteroid (38)
   m_TagString: Asteroid
@@ -3293,7 +3525,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -3351,6 +3583,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &643342816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 643342811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &648150492
 GameObject:
   m_ObjectHideFlags: 0
@@ -3363,6 +3607,7 @@ GameObject:
   - component: {fileID: 648150496}
   - component: {fileID: 648150495}
   - component: {fileID: 648150494}
+  - component: {fileID: 648150497}
   m_Layer: 0
   m_Name: asteroid (40)
   m_TagString: Asteroid
@@ -3441,7 +3686,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -3499,6 +3744,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &648150497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648150492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &697474685
 GameObject:
   m_ObjectHideFlags: 0
@@ -3542,6 +3799,7 @@ GameObject:
   - component: {fileID: 699487419}
   - component: {fileID: 699487418}
   - component: {fileID: 699487417}
+  - component: {fileID: 699487420}
   m_Layer: 0
   m_Name: asteroid (14)
   m_TagString: Asteroid
@@ -3620,7 +3878,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -3678,6 +3936,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &699487420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699487415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &753972932
 GameObject:
   m_ObjectHideFlags: 0
@@ -3690,6 +3960,7 @@ GameObject:
   - component: {fileID: 753972936}
   - component: {fileID: 753972935}
   - component: {fileID: 753972934}
+  - component: {fileID: 753972937}
   m_Layer: 0
   m_Name: asteroid (17)
   m_TagString: Asteroid
@@ -3768,7 +4039,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -3826,6 +4097,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &753972937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 753972932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &883946350
 GameObject:
   m_ObjectHideFlags: 0
@@ -8668,6 +8951,7 @@ GameObject:
   - component: {fileID: 886501819}
   - component: {fileID: 886501818}
   - component: {fileID: 886501817}
+  - component: {fileID: 886501820}
   m_Layer: 0
   m_Name: asteroid (24)
   m_TagString: Asteroid
@@ -8746,7 +9030,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -8804,6 +9088,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &886501820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886501815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &889010735
 GameObject:
   m_ObjectHideFlags: 0
@@ -8891,6 +9187,7 @@ GameObject:
   - component: {fileID: 927469449}
   - component: {fileID: 927469448}
   - component: {fileID: 927469447}
+  - component: {fileID: 927469450}
   m_Layer: 0
   m_Name: asteroid (34)
   m_TagString: Asteroid
@@ -8969,7 +9266,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -9027,6 +9324,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &927469450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927469445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &977877950
 GameObject:
   m_ObjectHideFlags: 0
@@ -9039,6 +9348,7 @@ GameObject:
   - component: {fileID: 977877954}
   - component: {fileID: 977877953}
   - component: {fileID: 977877952}
+  - component: {fileID: 977877955}
   m_Layer: 0
   m_Name: asteroid (12)
   m_TagString: Asteroid
@@ -9117,7 +9427,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -9175,6 +9485,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &977877955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977877950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &991674740
 GameObject:
   m_ObjectHideFlags: 0
@@ -9414,6 +9736,7 @@ GameObject:
   - component: {fileID: 1180830826}
   - component: {fileID: 1180830825}
   - component: {fileID: 1180830824}
+  - component: {fileID: 1180830827}
   m_Layer: 0
   m_Name: asteroid (18)
   m_TagString: Asteroid
@@ -9492,7 +9815,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -9550,6 +9873,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1180830827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180830822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1197399368
 GameObject:
   m_ObjectHideFlags: 0
@@ -9562,6 +9897,7 @@ GameObject:
   - component: {fileID: 1197399371}
   - component: {fileID: 1197399370}
   - component: {fileID: 1197399369}
+  - component: {fileID: 1197399373}
   m_Layer: 0
   m_Name: asteroid
   m_TagString: Asteroid
@@ -9625,7 +9961,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -9698,6 +10034,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1154853186}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1197399373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197399368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1204828540
 GameObject:
   m_ObjectHideFlags: 0
@@ -9710,6 +10058,7 @@ GameObject:
   - component: {fileID: 1204828544}
   - component: {fileID: 1204828543}
   - component: {fileID: 1204828542}
+  - component: {fileID: 1204828545}
   m_Layer: 0
   m_Name: asteroid (15)
   m_TagString: Asteroid
@@ -9788,7 +10137,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -9846,6 +10195,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1204828545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1204828540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1216082425
 GameObject:
   m_ObjectHideFlags: 0
@@ -9889,6 +10250,7 @@ GameObject:
   - component: {fileID: 1256654766}
   - component: {fileID: 1256654765}
   - component: {fileID: 1256654764}
+  - component: {fileID: 1256654767}
   m_Layer: 0
   m_Name: asteroid (25)
   m_TagString: Asteroid
@@ -9967,7 +10329,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -10025,6 +10387,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1256654767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256654762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1271362339
 GameObject:
   m_ObjectHideFlags: 0
@@ -10037,6 +10411,7 @@ GameObject:
   - component: {fileID: 1271362343}
   - component: {fileID: 1271362342}
   - component: {fileID: 1271362341}
+  - component: {fileID: 1271362344}
   m_Layer: 0
   m_Name: asteroid (13)
   m_TagString: Asteroid
@@ -10115,7 +10490,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -10173,6 +10548,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1271362344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271362339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1294667647
 GameObject:
   m_ObjectHideFlags: 0
@@ -10185,6 +10572,7 @@ GameObject:
   - component: {fileID: 1294667651}
   - component: {fileID: 1294667650}
   - component: {fileID: 1294667649}
+  - component: {fileID: 1294667652}
   m_Layer: 0
   m_Name: asteroid (16)
   m_TagString: Asteroid
@@ -10263,7 +10651,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -10321,6 +10709,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1294667652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294667647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1350909101
 GameObject:
   m_ObjectHideFlags: 0
@@ -10333,6 +10733,7 @@ GameObject:
   - component: {fileID: 1350909105}
   - component: {fileID: 1350909104}
   - component: {fileID: 1350909103}
+  - component: {fileID: 1350909106}
   m_Layer: 0
   m_Name: asteroid (41)
   m_TagString: Asteroid
@@ -10411,7 +10812,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -10469,6 +10870,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1350909106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350909101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1363861616
 GameObject:
   m_ObjectHideFlags: 0
@@ -10481,6 +10894,7 @@ GameObject:
   - component: {fileID: 1363861620}
   - component: {fileID: 1363861619}
   - component: {fileID: 1363861618}
+  - component: {fileID: 1363861621}
   m_Layer: 0
   m_Name: asteroid (1)
   m_TagString: Asteroid
@@ -10559,7 +10973,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -10617,6 +11031,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1363861621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1363861616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1403279234
 GameObject:
   m_ObjectHideFlags: 0
@@ -10629,6 +11055,7 @@ GameObject:
   - component: {fileID: 1403279238}
   - component: {fileID: 1403279237}
   - component: {fileID: 1403279236}
+  - component: {fileID: 1403279239}
   m_Layer: 0
   m_Name: asteroid (11)
   m_TagString: Asteroid
@@ -10707,7 +11134,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -10765,6 +11192,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1403279239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403279234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1407005763
 GameObject:
   m_ObjectHideFlags: 0
@@ -10777,6 +11216,7 @@ GameObject:
   - component: {fileID: 1407005767}
   - component: {fileID: 1407005766}
   - component: {fileID: 1407005765}
+  - component: {fileID: 1407005768}
   m_Layer: 0
   m_Name: asteroid (37)
   m_TagString: Asteroid
@@ -10855,7 +11295,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -10913,6 +11353,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1407005768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407005763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1435633448
 GameObject:
   m_ObjectHideFlags: 0
@@ -10925,6 +11377,7 @@ GameObject:
   - component: {fileID: 1435633452}
   - component: {fileID: 1435633451}
   - component: {fileID: 1435633450}
+  - component: {fileID: 1435633453}
   m_Layer: 0
   m_Name: asteroid (33)
   m_TagString: Asteroid
@@ -11003,7 +11456,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -11061,6 +11514,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1435633453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1435633448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1586718052
 GameObject:
   m_ObjectHideFlags: 0
@@ -11107,6 +11572,7 @@ GameObject:
   - component: {fileID: 1631439145}
   - component: {fileID: 1631439144}
   - component: {fileID: 1631439143}
+  - component: {fileID: 1631439146}
   m_Layer: 0
   m_Name: asteroid (5)
   m_TagString: Asteroid
@@ -11185,7 +11651,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -11243,6 +11709,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1631439146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1631439141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1653675103
 GameObject:
   m_ObjectHideFlags: 0
@@ -11255,6 +11733,7 @@ GameObject:
   - component: {fileID: 1653675107}
   - component: {fileID: 1653675106}
   - component: {fileID: 1653675105}
+  - component: {fileID: 1653675108}
   m_Layer: 0
   m_Name: asteroid (47)
   m_TagString: Asteroid
@@ -11333,7 +11812,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -11391,6 +11870,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1653675108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653675103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1665686035
 GameObject:
   m_ObjectHideFlags: 0
@@ -11403,6 +11894,7 @@ GameObject:
   - component: {fileID: 1665686039}
   - component: {fileID: 1665686038}
   - component: {fileID: 1665686037}
+  - component: {fileID: 1665686040}
   m_Layer: 0
   m_Name: asteroid (3)
   m_TagString: Asteroid
@@ -11481,7 +11973,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -11539,6 +12031,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1665686040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665686035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1666127207
 GameObject:
   m_ObjectHideFlags: 0
@@ -11551,6 +12055,7 @@ GameObject:
   - component: {fileID: 1666127211}
   - component: {fileID: 1666127210}
   - component: {fileID: 1666127209}
+  - component: {fileID: 1666127212}
   m_Layer: 0
   m_Name: asteroid (36)
   m_TagString: Asteroid
@@ -11629,7 +12134,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -11687,6 +12192,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1666127212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666127207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1702724985
 GameObject:
   m_ObjectHideFlags: 0
@@ -11699,6 +12216,7 @@ GameObject:
   - component: {fileID: 1702724989}
   - component: {fileID: 1702724988}
   - component: {fileID: 1702724987}
+  - component: {fileID: 1702724990}
   m_Layer: 0
   m_Name: asteroid (23)
   m_TagString: Asteroid
@@ -11777,7 +12295,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -11835,6 +12353,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1702724990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702724985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1745088725
 GameObject:
   m_ObjectHideFlags: 0
@@ -11847,6 +12377,7 @@ GameObject:
   - component: {fileID: 1745088729}
   - component: {fileID: 1745088728}
   - component: {fileID: 1745088727}
+  - component: {fileID: 1745088730}
   m_Layer: 0
   m_Name: asteroid (43)
   m_TagString: Asteroid
@@ -11925,7 +12456,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -11983,6 +12514,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1745088730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745088725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1752204918
 GameObject:
   m_ObjectHideFlags: 0
@@ -11995,6 +12538,7 @@ GameObject:
   - component: {fileID: 1752204922}
   - component: {fileID: 1752204921}
   - component: {fileID: 1752204920}
+  - component: {fileID: 1752204923}
   m_Layer: 0
   m_Name: asteroid (27)
   m_TagString: Asteroid
@@ -12073,7 +12617,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -12131,6 +12675,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1752204923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752204918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1779434042
 GameObject:
   m_ObjectHideFlags: 0
@@ -12143,6 +12699,7 @@ GameObject:
   - component: {fileID: 1779434046}
   - component: {fileID: 1779434045}
   - component: {fileID: 1779434044}
+  - component: {fileID: 1779434047}
   m_Layer: 0
   m_Name: asteroid (32)
   m_TagString: Asteroid
@@ -12221,7 +12778,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -12279,6 +12836,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1779434047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1779434042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1877777391
 GameObject:
   m_ObjectHideFlags: 0
@@ -12291,6 +12860,7 @@ GameObject:
   - component: {fileID: 1877777395}
   - component: {fileID: 1877777394}
   - component: {fileID: 1877777393}
+  - component: {fileID: 1877777396}
   m_Layer: 0
   m_Name: asteroid (29)
   m_TagString: Asteroid
@@ -12369,7 +12939,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -12427,6 +12997,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1877777396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877777391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1998878581
 GameObject:
   m_ObjectHideFlags: 0
@@ -12439,6 +13021,7 @@ GameObject:
   - component: {fileID: 1998878585}
   - component: {fileID: 1998878584}
   - component: {fileID: 1998878583}
+  - component: {fileID: 1998878586}
   m_Layer: 0
   m_Name: asteroid (4)
   m_TagString: Asteroid
@@ -12517,7 +13100,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -12575,6 +13158,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1998878586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998878581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2002574270
 GameObject:
   m_ObjectHideFlags: 0
@@ -12587,6 +13182,7 @@ GameObject:
   - component: {fileID: 2002574274}
   - component: {fileID: 2002574273}
   - component: {fileID: 2002574272}
+  - component: {fileID: 2002574275}
   m_Layer: 0
   m_Name: asteroid (31)
   m_TagString: Asteroid
@@ -12665,7 +13261,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -12723,6 +13319,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2002574275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002574270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2043495594
 GameObject:
   m_ObjectHideFlags: 0
@@ -12735,6 +13343,7 @@ GameObject:
   - component: {fileID: 2043495598}
   - component: {fileID: 2043495597}
   - component: {fileID: 2043495596}
+  - component: {fileID: 2043495599}
   m_Layer: 0
   m_Name: asteroid (39)
   m_TagString: Asteroid
@@ -12813,7 +13422,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -12871,6 +13480,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2043495599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2043495594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2059360341
 GameObject:
   m_ObjectHideFlags: 0
@@ -12883,6 +13504,7 @@ GameObject:
   - component: {fileID: 2059360345}
   - component: {fileID: 2059360344}
   - component: {fileID: 2059360343}
+  - component: {fileID: 2059360346}
   m_Layer: 0
   m_Name: asteroid (10)
   m_TagString: Asteroid
@@ -12961,7 +13583,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -13019,6 +13641,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2059360346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2059360341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2059538231
 GameObject:
   m_ObjectHideFlags: 0
@@ -13031,6 +13665,7 @@ GameObject:
   - component: {fileID: 2059538235}
   - component: {fileID: 2059538234}
   - component: {fileID: 2059538233}
+  - component: {fileID: 2059538236}
   m_Layer: 0
   m_Name: asteroid (22)
   m_TagString: Asteroid
@@ -13109,7 +13744,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -13167,6 +13802,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2059538236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2059538231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2073738137
 GameObject:
   m_ObjectHideFlags: 0
@@ -13179,6 +13826,7 @@ GameObject:
   - component: {fileID: 2073738141}
   - component: {fileID: 2073738140}
   - component: {fileID: 2073738139}
+  - component: {fileID: 2073738142}
   m_Layer: 0
   m_Name: asteroid (30)
   m_TagString: Asteroid
@@ -13257,7 +13905,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -13315,6 +13963,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2073738142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073738137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21e44124240a974c817d9cc6a46dfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

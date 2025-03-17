@@ -21,6 +21,15 @@ public class TigerMovement : MonoBehaviour
         ApplyTilt();
         UpdatePlayerPosition();
     }
+    void Start()
+    {
+        Player.onPlayerDie += Die;
+    }
+    void OnDestroy()
+    {
+        Player.onPlayerDie -= Die;
+        
+    }
 
     void HandleInput()
     {
@@ -52,5 +61,8 @@ public class TigerMovement : MonoBehaviour
     void UpdatePlayerPosition()
     {
         _playerRb2d.position = _rb2d.position + (Vector2)_playerNewPos;
+    }
+    public void Die(){
+        Destroy(gameObject);
     }
 }

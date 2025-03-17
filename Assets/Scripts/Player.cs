@@ -8,10 +8,16 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject bullet;
     private Rigidbody2D _rb2d;
     private float _rotationZ;
+    public delegate void OnPlayerDie();
+    public static event OnPlayerDie onPlayerDie;
     
     void Awake()
     {
         _rb2d = GetComponent<Rigidbody2D>();
+    }
+    void Start()
+    {
+
     }
 
     void Update()
@@ -41,10 +47,10 @@ public class Player : MonoBehaviour
         if (bullet == null) return;
         Instantiate(bullet, transform.position, transform.rotation);
     }
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.CompareTag("Asteroid")){
-            Destroy(gameObject);
-        }
+    public void Die(){
+        onPlayerDie?.Invoke();
+        Player.onPlayerDie = null;
+        Destroy(gameObject);
     }
+
 }
