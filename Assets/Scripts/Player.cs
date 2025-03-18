@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     private float _rotationZ;
     public delegate void OnPlayerDie();
     public static event OnPlayerDie onPlayerDie;
+    [SerializeField] private float shootCadence = 0.5f;
+    private float _nextShoot = 0f;
     
     void Awake()
     {
@@ -45,7 +47,12 @@ public class Player : MonoBehaviour
     void Shoot()
     {
         if (bullet == null) return;
-        Instantiate(bullet, transform.position, transform.rotation);
+        if (Time.time >= _nextShoot)
+        {
+            _nextShoot = Time.time + shootCadence;
+            GameObject newBullet = Instantiate(bullet, transform.position, transform.rotation);
+            newBullet.GetComponent<Bullet>().bulletSum = FindAnyObjectByType<TigerMovement>().currentSpeed;
+        }
     }
     public void Die(){
         onPlayerDie?.Invoke();

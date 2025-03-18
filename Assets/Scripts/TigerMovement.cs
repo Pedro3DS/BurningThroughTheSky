@@ -12,6 +12,7 @@ public class TigerMovement : MonoBehaviour
     [SerializeField] private float _tiltSpeed = 5f;
     private Vector2 _movementInput;
     public float currentSpeed;
+    private bool fliped = false;
 
     void FixedUpdate()
     {
@@ -34,6 +35,11 @@ public class TigerMovement : MonoBehaviour
     void HandleInput()
     {
         _movementInput.x = Input.GetAxis("Horizontal");
+        if(_movementInput.x > 0){
+            Flip();
+        }else{
+            Flip();
+        }
         _movementInput.y = Input.GetAxis("Vertical"); 
     }
 
@@ -48,6 +54,12 @@ public class TigerMovement : MonoBehaviour
         float newRotationZ = Mathf.LerpAngle(transform.eulerAngles.z, targetTilt, _tiltSpeed * Time.deltaTime);
         transform.rotation = Quaternion.Euler(0, 0, newRotationZ);
     }
+    void Flip()
+    {
+        fliped = !fliped;
+        Quaternion newTransform = fliped ? Quaternion.Euler(0f,0f,0f) : Quaternion.Euler(0f,-180f,0f);
+        transform.rotation = newTransform;
+    }
 
     void ClampSpeed()
     {
@@ -56,6 +68,9 @@ public class TigerMovement : MonoBehaviour
             _rb2d.velocity = _rb2d.velocity.normalized * _maxSpeed;
         }
         currentSpeed = _rb2d.velocity.magnitude;
+        if(currentSpeed < 0){
+            _rb2d.velocity = Vector2.zero;
+        }
     }
 
     void UpdatePlayerPosition()

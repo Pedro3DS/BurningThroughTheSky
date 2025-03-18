@@ -1,21 +1,32 @@
 using System.Collections;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class EnemyBullet : MonoBehaviour
 {
     public float bulletSpeed = 5f;
-    public float bulletSum = 1f;
     public float timeToDestroy = 1.4f;
     public GameObject explosion;
+    private Vector3 targetPosition; 
+    public bool shootFliped =false;
 
     void Start()
     {
         StartCoroutine(DestroyBullet());
     }
+   
+    public void SetTargetPosition(Vector3 target)
+    {
+        targetPosition = target;
+    }
 
     void Update()
     {
-        transform.position += transform.right * (bulletSpeed + (bulletSpeed + bulletSum)) * Time.deltaTime; 
+        Vector3 direction = (targetPosition - transform.position).normalized;
+        transform.Translate(direction * bulletSpeed * Time.deltaTime);
+        if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
+        {
+            Destroy(gameObject);
+        }
     }
 
     IEnumerator DestroyBullet()

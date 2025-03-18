@@ -7,6 +7,8 @@ TagManager:
   - Shoot1
   - Asteroid
   - Tiger
+  - Enemy
+  - EnemyShoot
   layers:
   - Default
   - TransparentFX
