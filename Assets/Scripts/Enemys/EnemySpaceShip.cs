@@ -18,6 +18,7 @@ public class EnemySpaceShip : MonoBehaviour
     private bool isFacingRight = true;
     private Player player;
     private bool playerAlived = true;
+    [SerializeField] private AudioClip _destroyAudio;
     void Start()
     {
         player = GameObject.FindObjectOfType<Player>();
@@ -47,6 +48,10 @@ public class EnemySpaceShip : MonoBehaviour
             Shooting();
         }
     }
+
+    public void SpaceShipDestroy(){
+        Destroy(gameObject);
+    }
     void Shooting()
     {
         float distance = Vector2.Distance(transform.position, playerPos.position);
@@ -74,13 +79,18 @@ public class EnemySpaceShip : MonoBehaviour
 
         if (other.gameObject.CompareTag("Shoot1"))
         {
-            Destroy(other.gameObject);
-            life--;
-            if (life <= 0)
-            {
-                Instantiate(explosion, gameObject.transform.position, Quaternion.identity);
-                Destroy(gameObject);
-            }
+            TakeDamage(1);
+            CheckLife();
         }
+    }
+    void CheckLife(){
+        if (life <= 0)
+        {
+            AudioController.instance.PlayAudio(_destroyAudio);
+            GetComponent<Animator>().SetTrigger("Die");
+        }
+    }
+    void TakeDamage(int damage){
+        life -= damage;
     }
 }
