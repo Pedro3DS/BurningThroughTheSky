@@ -13,6 +13,8 @@ public class TigerMovement : MonoBehaviour
     private Vector2 _movementInput;
     public float currentSpeed;
     private bool fliped = false;
+    public delegate void OnTigerDie();
+    public static event OnTigerDie onTigerDie;
 
     void FixedUpdate()
     {
@@ -25,11 +27,6 @@ public class TigerMovement : MonoBehaviour
     void Start()
     {
         Player.onPlayerDie += Die;
-    }
-    void OnDestroy()
-    {
-        Player.onPlayerDie -= Die;
-        
     }
 
     void HandleInput()

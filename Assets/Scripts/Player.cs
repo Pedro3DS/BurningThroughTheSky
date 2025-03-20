@@ -51,7 +51,24 @@ public class Player : MonoBehaviour
     public void Die(){
         onPlayerDie?.Invoke();
         Player.onPlayerDie = null;
-        Destroy(gameObject);
+        SceneController.instance.ChangeScene("Game");
+    }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(
+            collision.gameObject.CompareTag("Asteroid") || 
+            collision.gameObject.CompareTag("Dust") ||
+            collision.gameObject.CompareTag("Enemy")){
+            Die();
+        }
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(
+
+            collision.gameObject.CompareTag("EnemyShoot")){
+            Die();
+        }
     }
 
 }

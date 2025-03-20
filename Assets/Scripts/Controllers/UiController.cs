@@ -18,11 +18,11 @@ public class UiController : MonoBehaviour
     }
     void OnEnable()
     {
-        Player.onPlayerDie += EnableDeathCanvas;
+        // Player.onPlayerDie += EnableDeathCanvas;
     }
     void OnDisable()
     {
-        Player.onPlayerDie -= EnableDeathCanvas;
+        // Player.onPlayerDie -= EnableDeathCanvas;
         
     }
     void EnableDeathCanvas(){
