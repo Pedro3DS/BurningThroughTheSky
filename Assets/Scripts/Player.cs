@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private GameObject bullet;
     private Rigidbody2D _rb2d;
     private float _rotationZ;
     public delegate void OnPlayerDie();
@@ -46,13 +45,8 @@ public class Player : MonoBehaviour
 
     void Shoot()
     {
-        if (bullet == null) return;
-        if (Time.time >= _nextShoot)
-        {
-            _nextShoot = Time.time + shootCadence;
-            GameObject newBullet = Instantiate(bullet, transform.position, transform.rotation);
-            newBullet.GetComponent<Bullet>().bulletSum = FindAnyObjectByType<TigerMovement>().currentSpeed;
-        }
+        GunSequential.instance.Shoot(shootCadence, gameObject.transform);
+        
     }
     public void Die(){
         onPlayerDie?.Invoke();

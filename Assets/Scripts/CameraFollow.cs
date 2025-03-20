@@ -14,7 +14,7 @@ public class CameraFollow : MonoBehaviour
         {
             Vector3 desiredPosition = target.position + offset;
             desiredPosition.z = transform.position.z; // Manter a posição Z da câmera fixa
-            Vector3 smoothedPosition = Vector3.Lerp(new Vector3(transform.position.x, 0f, transform.position.z), desiredPosition, smoothSpeed);
+            Vector3 smoothedPosition = Vector3.Lerp(new Vector3(transform.position.x, transform.position.y, transform.position.z), desiredPosition, smoothSpeed);
             transform.position = smoothedPosition;
 
         }
