@@ -1564,7 +1564,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 1
+  m_RenderPostProcessing: 0
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -1666,7 +1666,7 @@ MonoBehaviour:
   target: {fileID: 543920833}
   smoothSpeed: 0.03
   offset: {x: 2.19, y: 0, z: 0}
-  limitRight: 0
+  limitRight: 4.97
   limitLeft: 0
   limitUp: 2
   limitDown: -2

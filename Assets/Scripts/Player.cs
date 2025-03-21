@@ -49,9 +49,9 @@ public class Player : MonoBehaviour
         
     }
     public void Die(){
+        SceneController.instance.ChangeScene("Game");
         onPlayerDie?.Invoke();
         Player.onPlayerDie = null;
-        SceneController.instance.ChangeScene("Game");
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -64,9 +64,7 @@ public class Player : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(
-
-            collision.gameObject.CompareTag("EnemyShoot")){
+        if(collision.gameObject.CompareTag("EnemyShoot")){
             Die();
         }
     }

@@ -13,15 +13,13 @@ public class EnemySpaceShip : MonoBehaviour
     public GameObject explosion;
 
 
-    private float timeSinceLastShot = 0f;
-    private Vector3 lastKnownPlayerPosition;
-    private bool isFacingRight = true;
-    private Player player;
+    private float _lastShot = 0f;
+    private Vector3 _lastPlayerPos;
+    private bool _isFacingRight = true;
     private bool playerAlived = true;
     [SerializeField] private AudioClip _destroyAudio;
     void Start()
     {
-        player = GameObject.FindObjectOfType<Player>();
         Player.onPlayerDie += PlayerDied;
     }
     void PlayerDied(){
@@ -32,18 +30,18 @@ public class EnemySpaceShip : MonoBehaviour
     {
         if (playerAlived)
         {
-            timeSinceLastShot += Time.deltaTime;
+            _lastShot += Time.deltaTime;
 
-            if (playerPos.position.x < transform.position.x && isFacingRight)
+            if (playerPos.position.x < transform.position.x && _isFacingRight)
             {
                 Flip();
             }
-            else if (playerPos.position.x > transform.position.x && !isFacingRight)
+            else if (playerPos.position.x > transform.position.x && !_isFacingRight)
             {
                 Flip();
             }
 
-            lastKnownPlayerPosition = playerPos.position;
+            _lastPlayerPos = playerPos.position;
 
             Shooting();
         }
@@ -55,22 +53,20 @@ public class EnemySpaceShip : MonoBehaviour
     void Shooting()
     {
         float distance = Vector2.Distance(transform.position, playerPos.position);
-        if (distance <= distanceToShoot && timeSinceLastShot >= shootInterval)
+        if (distance <= distanceToShoot && _lastShot >= shootInterval)
         {
-            //animator.SetBool("IsShooting", true); TODO: Arrumar animacao do tiro e sincronizar.
-            GameObject bullet = Instantiate(enemyShoot, transform.position, Quaternion.identity);
-            bullet.GetComponent<EnemyBullet>().SetTargetPosition(lastKnownPlayerPosition);
-            timeSinceLastShot = 0f; // Reinicia o tempo desde o último tiro
-        }
-        else
-        {
-            //animator.SetBool("IsShooting", false);
+            Vector2 direction = (playerPos.position - transform.position).normalized;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            GameObject bullet = Instantiate(enemyShoot, transform.position, Quaternion.Euler(0f, 0f, angle));
+            bullet.GetComponent<EnemyBullet>().SetDirection(direction);
+
+            _lastShot = 0f;
         }
     }
     void Flip()
     {
-        isFacingRight = !isFacingRight;
-        Quaternion newTransform = isFacingRight ? Quaternion.Euler(0f,0f,0f) : Quaternion.Euler(0f,-180f,0f);
+        _isFacingRight = !_isFacingRight;
+        Quaternion newTransform = _isFacingRight ? Quaternion.Euler(0f,0f,0f) : Quaternion.Euler(0f,-180f,0f);
         transform.rotation = newTransform;
     }
 
