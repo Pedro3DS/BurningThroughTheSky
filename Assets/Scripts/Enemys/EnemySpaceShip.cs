@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemySpaceShip : MonoBehaviour
 {
@@ -10,17 +11,20 @@ public class EnemySpaceShip : MonoBehaviour
     public GameObject enemyShoot;
     public float shootInterval = 2f;
     public int life = 3;
-    public GameObject explosion;
-
 
     private float _lastShot = 0f;
     private Vector3 _lastPlayerPos;
     private bool _isFacingRight = true;
     private bool playerAlived = true;
     [SerializeField] private AudioClip _destroyAudio;
+    [SerializeField] private GameObject _lifeObject;
+    private Slider _lifeSlider;
+    private bool _firstDamage = true;
     void Start()
     {
         Player.onPlayerDie += PlayerDied;
+        _lifeSlider = _lifeObject.GetComponent<Slider>();
+        _lifeSlider.maxValue = life;
     }
     void PlayerDied(){
         playerAlived = false;
@@ -48,6 +52,7 @@ public class EnemySpaceShip : MonoBehaviour
     }
 
     public void SpaceShipDestroy(){
+        
         Destroy(gameObject);
     }
     void Shooting()
@@ -82,11 +87,20 @@ public class EnemySpaceShip : MonoBehaviour
     void CheckLife(){
         if (life <= 0)
         {
+
             AudioController.instance.PlayAudio(_destroyAudio);
+            _lifeObject.SetActive(false);
+            CameraController.instance.ObjectDestroyed();
             GetComponent<Animator>().SetTrigger("Die");
         }
     }
     void TakeDamage(int damage){
+        if(_firstDamage){
+            _lifeObject.SetActive(true);
+            _firstDamage = false;
+        }
         life -= damage;
+        _lifeSlider.value = life;
     }
+    
 }

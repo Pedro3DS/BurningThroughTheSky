@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     }
     void Start()
     {
+        Transition.onTransitionEnd += DestroyPlayer;
 
     }
 
@@ -49,9 +50,11 @@ public class Player : MonoBehaviour
         
     }
     public void Die(){
-        SceneController.instance.ChangeScene("Game");
         onPlayerDie?.Invoke();
         Player.onPlayerDie = null;
+    }
+    private void DestroyPlayer(){
+        SceneController.instance.ChangeScene("Game");
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
