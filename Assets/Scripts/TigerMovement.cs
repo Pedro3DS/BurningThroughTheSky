@@ -16,8 +16,19 @@ public class TigerMovement : MonoBehaviour
     public delegate void OnTigerDie();
     public static event OnTigerDie onTigerDie;
 
+    #region Shoot
+        [Header("Shoot Roar")]
+        [SerializeField] private GameObject bullet;
+        [SerializeField] private float shootCadence = 0.5f;
+        [SerializeField] private AudioClip roarSound;
+        private float _nextShoot = 0f;
+
+    #endregion
+
+
     void FixedUpdate()
     {
+        ShootRoar();
         HandleInput();
         Movement();
         ClampSpeed();
@@ -67,6 +78,13 @@ public class TigerMovement : MonoBehaviour
         currentSpeed = _rb2d.velocity.magnitude;
         if(currentSpeed < 0){
             _rb2d.velocity = Vector2.zero;
+        }
+    }
+    void ShootRoar(){
+        if(Input.GetButtonDown("Fire2") && Time.time >= _nextShoot){
+            _nextShoot = Time.time + shootCadence;
+            AudioController.instance.PlayAudio(roarSound);
+            Instantiate(bullet, transform.position, Quaternion.identity);
         }
     }
 

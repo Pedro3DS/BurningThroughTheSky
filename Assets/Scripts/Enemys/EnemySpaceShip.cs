@@ -78,9 +78,9 @@ public class EnemySpaceShip : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
 
-        if (other.gameObject.CompareTag("Shoot1"))
+        if (other.gameObject.CompareTag("Shoot1") || other.gameObject.CompareTag("RoarShoot"))
         {
-            TakeDamage(1);
+            TakeDamage(other.gameObject.GetComponent<Bullet>().damage);
             CheckLife();
         }
     }

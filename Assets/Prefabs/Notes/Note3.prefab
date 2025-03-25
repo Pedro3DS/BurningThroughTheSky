@@ -160,6 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 5
+  damage: 1
   bulletSum: 1
-  timeToDestroy: 1.4
+  timeToDestroy: 1.2
   explosion: {fileID: 0}
