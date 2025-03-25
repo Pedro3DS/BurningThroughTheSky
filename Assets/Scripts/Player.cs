@@ -61,13 +61,18 @@ public class Player : MonoBehaviour
         if(
             collision.gameObject.CompareTag("Asteroid") || 
             collision.gameObject.CompareTag("Dust") ||
-            collision.gameObject.CompareTag("Enemy") ||
-            collision.gameObject.CompareTag("BombExplosion")
+            collision.gameObject.CompareTag("Enemy")
             ){
             Die();
         }
         if(collision.gameObject.CompareTag("Bomb")){
             collision.gameObject.GetComponent<Bomb>().Explode();
+        }
+    }
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if(other.gameObject.CompareTag("BombExplosion")){
+            Die();
         }
     }
     void OnTriggerEnter2D(Collider2D collision)
