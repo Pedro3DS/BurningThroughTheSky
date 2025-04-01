@@ -38,8 +38,8 @@ public class TigerMovement : MonoBehaviour
         ShootRoar();
         HandleInput();
         Movement();
-        ClampSpeed();
-        ApplyTilt();
+        // ClampSpeed();
+        // ApplyTilt();
         UpdatePlayerPosition();
     }
     void Start()
@@ -51,19 +51,21 @@ public class TigerMovement : MonoBehaviour
 
     void HandleInput()
     {
-        _movementInput.x = controller.HorizontalMovement();
-        if(_movementInput.x > 0){
-            Flip();
-        }else{
-            Flip();
-        }
+        // _movementInput.x = controller.HorizontalMovement();
+        _movementInput.x = Input.GetAxis("Horizontal");
+        // if(_movementInput.x > 0){
+        //     Flip();
+        // }else{
+        //     Flip();
+        // }
         _movementInput.y = controller.VerticalMovement(); 
+        _movementInput.y = Input.GetAxis("Vertical"); 
     }
 
     void Movement()
     {
         // _rb2d.AddForce(_movementInput * _acceleration);
-        _rb2d.velocity = 
+        _rb2d.velocity = new Vector2(_movementInput.x * _acceleration, _movementInput.y * _acceleration); 
     }
 
     void ApplyTilt()
