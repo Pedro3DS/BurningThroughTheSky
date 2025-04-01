@@ -23,7 +23,7 @@ public class TransitionController : MonoBehaviour
     }
     void DieTransition(){
         GameObject newCanvas = deathCanvas;
-        newCanvas.GetComponent<Canvas>().worldCamera = Camera.main;
+        // newCanvas.GetComponent<Canvas>().worldCamera = Camera.main;
         Instantiate(newCanvas);
     }
 }

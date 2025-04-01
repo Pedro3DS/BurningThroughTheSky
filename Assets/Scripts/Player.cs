@@ -11,6 +11,10 @@ public class Player : MonoBehaviour
     public static event OnPlayerDie onPlayerDie;
     [SerializeField] private float shootCadence = 0.5f;
     private float _nextShoot = 0f;
+
+    [SerializeField]
+    private ControllersData controllData;
+    private ControllersManager controller = new ControllersManager();
     
     void Awake()
     {
@@ -18,13 +22,17 @@ public class Player : MonoBehaviour
     }
     void Start()
     {
+        controller.UpdateGamepadList();
+        controller.GetGamepad(controllData.controllerIndex);
         Transition.onTransitionEnd += DestroyPlayer;
 
     }
 
     void Update()
     {
-        float rotationValue = -Input.GetAxis("PlayerHorizontal");
+        controller.UpdateGamepadList();
+        // float rotationValue = -Input.GetAxis("PlayerHorizontal");
+        float rotationValue = -controller.HorizontalMovement();
 
         if (rotationValue != 0)
         {
@@ -38,7 +46,7 @@ public class Player : MonoBehaviour
         }
 
         // Disparar somente se a rotação estiver entre 0 e 180 graus
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Fire1")) && Mathf.Abs(_rotationZ) <= 180)
+        if ((Input.GetKeyDown(KeyCode.Space) || controller.ShootAction()) && Mathf.Abs(_rotationZ) <= 180)
         {
             Shoot();
         }

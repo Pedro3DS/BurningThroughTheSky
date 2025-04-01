@@ -16,6 +16,12 @@ public class TigerMovement : MonoBehaviour
     public delegate void OnTigerDie();
     public static event OnTigerDie onTigerDie;
 
+    #region Controllers
+        [SerializeField]
+        private ControllersData controllData;
+        private ControllersManager controller =  new ControllersManager();
+    #endregion
+
     #region Shoot
         [Header("Shoot Roar")]
         [SerializeField] private GameObject bullet;
@@ -28,6 +34,7 @@ public class TigerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        controller.UpdateGamepadList();
         ShootRoar();
         HandleInput();
         Movement();
@@ -37,23 +44,26 @@ public class TigerMovement : MonoBehaviour
     }
     void Start()
     {
+        controller.UpdateGamepadList();
+        controller.GetGamepad(controllData.controllerIndex);
         Player.onPlayerDie += Die;
     }
 
     void HandleInput()
     {
-        _movementInput.x = Input.GetAxis("Horizontal");
+        _movementInput.x = controller.HorizontalMovement();
         if(_movementInput.x > 0){
             Flip();
         }else{
             Flip();
         }
-        _movementInput.y = Input.GetAxis("Vertical"); 
+        _movementInput.y = controller.VerticalMovement(); 
     }
 
     void Movement()
     {
-        _rb2d.AddForce(_movementInput * _acceleration);
+        // _rb2d.AddForce(_movementInput * _acceleration);
+        _rb2d.velocity = 
     }
 
     void ApplyTilt()
