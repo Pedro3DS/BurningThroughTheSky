@@ -36,14 +36,14 @@ public class EnemySpaceShip : MonoBehaviour
         {
             _lastShot += Time.deltaTime;
 
-            if (playerPos.position.x < transform.position.x && _isFacingRight)
-            {
-                Flip();
-            }
-            else if (playerPos.position.x > transform.position.x && !_isFacingRight)
-            {
-                Flip();
-            }
+            // if (playerPos.position.x < transform.position.x && _isFacingRight)
+            // {
+            //     Flip();
+            // }
+            // else if (playerPos.position.x > transform.position.x && !_isFacingRight)
+            // {
+            //     Flip();
+            // }
 
             _lastPlayerPos = playerPos.position;
 
