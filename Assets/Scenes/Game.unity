@@ -1686,7 +1686,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &543920837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1703,7 +1703,7 @@ MonoBehaviour:
   _playerRb2d: {fileID: 634947450}
   _playerNewPos: {x: 0.46, y: 0.6, z: 1}
   _maxSpeed: 10
-  _acceleration: 5
+  _acceleration: 10
   _tiltAmount: 15
   _tiltSpeed: 10
   currentSpeed: 0

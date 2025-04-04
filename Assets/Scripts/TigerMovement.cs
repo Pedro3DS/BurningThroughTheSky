@@ -51,15 +51,15 @@ public class TigerMovement : MonoBehaviour
 
     void HandleInput()
     {
-        // _movementInput.x = controller.HorizontalMovement();
-        _movementInput.x = Input.GetAxis("Horizontal");
+        _movementInput.x = controller.HorizontalMovement();
+        // _movementInput.x = Input.GetAxis("Horizontal");
         // if(_movementInput.x > 0){
         //     Flip();
         // }else{
         //     Flip();
         // }
         _movementInput.y = controller.VerticalMovement(); 
-        _movementInput.y = Input.GetAxis("Vertical"); 
+        // _movementInput.y = Input.GetAxis("Vertical"); 
     }
 
     void Movement()
