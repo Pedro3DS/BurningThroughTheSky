@@ -1,0 +1,32 @@
+using System.Collections;
+using UnityEngine;
+
+public class BulletCharge : MonoBehaviour
+{
+    public float bulletSpeed = 5f;
+    public int damage = 1;
+    public float bulletSum = 1f;
+    public float timeToDestroy = 1.4f;
+    public GameObject explosion;
+
+    void Start()
+    {
+        StartCoroutine(DestroyBullet());
+    }
+
+    void Update()
+    {
+        transform.position += transform.right * (bulletSpeed + (bulletSpeed + bulletSum)) * Time.deltaTime; 
+    }
+
+    IEnumerator DestroyBullet()
+    {
+        yield return new WaitForSeconds(timeToDestroy);
+        if (explosion != null)
+        {
+            GameObject newExplosion = Instantiate(explosion, transform.position, Quaternion.identity);
+            Destroy(newExplosion, 1f);
+        }
+        Destroy(gameObject);
+    }
+}

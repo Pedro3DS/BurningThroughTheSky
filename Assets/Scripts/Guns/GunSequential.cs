@@ -10,6 +10,7 @@ public class GunSequential : MonoBehaviour
     private float _currentTime;
     private int _shootIndex = 0;
     public static GunSequential instance = null;
+    [SerializeField ] private ShootData _shootData;
     void Awake()
     {
         if(!instance){
@@ -18,11 +19,11 @@ public class GunSequential : MonoBehaviour
             Destroy(instance);
         }
     }
-    public void Shoot(float cooldown, Transform target){
+    public void Shoot(Transform target){
         if (_bullets == null) return;
         if (Time.time >= _currentTime)
         {
-            _currentTime = Time.time + cooldown;
+            _currentTime = Time.time + _shootData.cadence;
             if(_shootIndex + 1 >= _bullets.Length){
                 _shootIndex = 0;
             }else{
@@ -30,6 +31,7 @@ public class GunSequential : MonoBehaviour
             }
             GameObject newBullet = Instantiate(_bullets[_shootIndex], target.position, target.rotation);
             newBullet.GetComponent<SpriteRenderer>().color = _rdnCollors[Random.Range(0, _rdnCollors.Length)];
+            newBullet.GetComponent<Bullet>().damage = _shootData.minDamage;
             newBullet.GetComponent<Bullet>().bulletSum = FindAnyObjectByType<TigerMovement>().currentSpeed;
         }
     }

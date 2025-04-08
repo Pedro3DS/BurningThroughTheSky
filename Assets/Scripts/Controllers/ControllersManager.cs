@@ -34,6 +34,7 @@ public class ControllersManager : MonoBehaviour
             return null; // Sem joystick, pode usar teclado como fallback
 
         _assignedJoystick = index;
+        if(index == 10) return null;
         return connectedGamepads[_assignedJoystick];
     }
 
@@ -47,15 +48,16 @@ public class ControllersManager : MonoBehaviour
         return connectedGamepads[_assignedJoystick].buttonWest.IsActuated();
     }
     public bool ShootAction(){
+        if(_assignedJoystick == 10) return Input.GetKeyDown(KeyCode.Space);
         return connectedGamepads[_assignedJoystick].buttonWest.isPressed;
     }
     public float HorizontalMovement(){
-        if (connectedGamepads.Count == 0)
+        if (connectedGamepads.Count == 0 || _assignedJoystick == 10)
             return Input.GetAxis("Horizontal");
         return connectedGamepads[_assignedJoystick].leftStick.value.x;
     }
     public float VerticalMovement(){
-        if (connectedGamepads.Count == 0)
+        if (connectedGamepads.Count == 0 || _assignedJoystick == 10)
             return Input.GetAxis("Vertical");
         return connectedGamepads[_assignedJoystick].leftStick.value.y;
     }

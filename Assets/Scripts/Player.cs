@@ -30,7 +30,6 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        controller.UpdateGamepadList();
         // float rotationValue = -Input.GetAxis("PlayerHorizontal");
         float rotationValue = -controller.HorizontalMovement();
 
@@ -54,7 +53,7 @@ public class Player : MonoBehaviour
 
     void Shoot()
     {
-        GunSequential.instance.Shoot(shootCadence, gameObject.transform);
+        // GunSequential.instance.Shoot(gameObject.transform);
         
     }
     public void Die(){
@@ -62,7 +61,7 @@ public class Player : MonoBehaviour
         Player.onPlayerDie = null;
     }
     private void DestroyPlayer(){
-        SceneController.instance.ChangeScene("Game");
+        SceneController.instance.ChangeScene("Game2");
     }
     void OnCollisionEnter2D(Collision2D collision)
     {

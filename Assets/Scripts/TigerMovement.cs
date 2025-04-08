@@ -65,7 +65,8 @@ public class TigerMovement : MonoBehaviour
     void Movement()
     {
         // _rb2d.AddForce(_movementInput * _acceleration);
-        _rb2d.velocity = new Vector2(_movementInput.x * _acceleration, _movementInput.y * _acceleration); 
+        _rb2d.velocity = new Vector2(_movementInput.x * _acceleration, _movementInput.y * _acceleration);
+        currentSpeed = _rb2d.velocity.magnitude;
     }
 
     void ApplyTilt()
