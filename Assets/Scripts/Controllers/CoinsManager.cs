@@ -4,15 +4,34 @@ using UnityEngine;
 
 public class CoinsManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public static CoinsManager Instance = null;
 
-    // Update is called once per frame
-    void Update()
+    void Awake()
     {
-        
+        if(!Instance){
+            Instance = this;
+        }else{
+            Destroy(Instance);
+        }
+    }
+    public void SetCoins(int value){
+        if(PlayerPrefs.HasKey("Coins")){
+            int currentCoins = PlayerPrefs.GetInt("Coins");
+            PlayerPrefs.SetInt("Coins", value += currentCoins);
+
+        }else{
+            PlayerPrefs.SetInt("Coins", value);
+
+        }
+    }
+    public int GetCoins(){
+        if(!PlayerPrefs.HasKey("Coins")) return 0;
+
+
+        return PlayerPrefs.GetInt("Coins");
+    }
+    void OnApplicationQuit()
+    {
+        PlayerPrefs.DeleteKey("Coins");
     }
 }

@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     private float _rotationZ;
     public delegate void OnPlayerDie();
     public static event OnPlayerDie onPlayerDie;
+    public delegate void OnPlayerGetCoint();
+    public static event OnPlayerGetCoint onPlayerGetCoint;
     [SerializeField] private float shootCadence = 0.5f;
     private float _nextShoot = 0f;
 
@@ -86,6 +88,12 @@ public class Player : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("EnemyShoot")){
             Die();
+        }
+        if(collision.gameObject.CompareTag("Coin")){
+            Destroy(collision.gameObject);
+            CoinsManager.Instance.SetCoins(1);
+            onPlayerGetCoint?.Invoke();
+            Player.onPlayerGetCoint = null;
         }
     }
 

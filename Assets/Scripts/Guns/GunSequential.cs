@@ -29,7 +29,11 @@ public class GunSequential : MonoBehaviour
             }else{
                 _shootIndex ++;
             }
+            
             GameObject newBullet = Instantiate(_bullets[_shootIndex], target.position, target.rotation);
+
+
+
             newBullet.GetComponent<SpriteRenderer>().color = _rdnCollors[Random.Range(0, _rdnCollors.Length)];
             newBullet.GetComponent<Bullet>().damage = _shootData.minDamage;
             newBullet.GetComponent<Bullet>().bulletSum = FindAnyObjectByType<TigerMovement>().currentSpeed;

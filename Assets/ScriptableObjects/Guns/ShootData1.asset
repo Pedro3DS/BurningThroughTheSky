@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0430a7d77047f6041bc00028f4c21988, type: 3}
   m_Name: ShootData1
   m_EditorClassIdentifier: 
-  damage: 1
+  minDamage: 1
+  maxDamage: 1
   cadence: 0.29
+  maxChargeTime: 2

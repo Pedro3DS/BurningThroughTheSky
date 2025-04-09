@@ -9,14 +9,20 @@ public class BulletCharge : MonoBehaviour
     public float timeToDestroy = 1.4f;
     public GameObject explosion;
 
-    void Start()
-    {
-        StartCoroutine(DestroyBullet());
-    }
+    private bool _launched = false;
 
     void Update()
     {
-        transform.position += transform.right * (bulletSpeed + (bulletSpeed + bulletSum)) * Time.deltaTime; 
+        if (_launched)
+        {
+            transform.position += transform.right * (bulletSpeed + bulletSum) * Time.deltaTime;
+        }
+    }
+
+    public void Launch()
+    {
+        _launched = true;
+        StartCoroutine(DestroyBullet());
     }
 
     IEnumerator DestroyBullet()

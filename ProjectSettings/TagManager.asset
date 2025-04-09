@@ -13,6 +13,7 @@ TagManager:
   - RoarShoot
   - Bomb
   - BombExplosion
+  - Coin
   layers:
   - Default
   - TransparentFX

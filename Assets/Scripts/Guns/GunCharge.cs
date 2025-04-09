@@ -6,11 +6,13 @@ public class GunCharge : MonoBehaviour
 {
     [SerializeField] private GameObject _bullet;
     [SerializeField] private ShootData _shootData;
+    public float minHeight = 0;
+    public float maxHeight = 0.5f;
+
     private float _currentTime;
-    public int minHeight = 0;
-    public int maxHeight = 2;
     private float _chargeTime = 0f;
     private bool _charging = false;
+    private GameObject _chargingBullet;
 
     public static GunCharge instance = null;
 
@@ -24,35 +26,63 @@ public class GunCharge : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time >= _currentTime)
         {
-            _charging = true;
+            StartCharging();
+        }
+
+        if (Input.GetKey(KeyCode.Space) && _charging)
+        {
             _chargeTime += Time.deltaTime;
+            UpdateChargingBullet();
         }
 
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space) && _charging)
         {
-            if (Time.time >= _currentTime && _bullet != null)
-            {
-                Transform target = transform; // ou outro transform de disparo, ex: firePoint
-                GameObject newBullet = Instantiate(_bullet, target.position, target.rotation);
-
-                float clampedCharge = Mathf.Clamp(_chargeTime, 0, _shootData.maxChargeTime);
-                float chargePercent = clampedCharge / _shootData.maxChargeTime;
-
-                float chargedDamage = Mathf.Lerp(_shootData.minDamage, _shootData.maxDamage, chargePercent);
-                float chargedScale = Mathf.Lerp(minHeight, maxHeight, chargePercent);
-
-                BulletCharge bulletScript = newBullet.GetComponent<BulletCharge>();
-                bulletScript.transform.localScale = new Vector2(chargedScale, chargedScale);
-                bulletScript.damage = (int)Mathf.Round(chargedDamage);
-                bulletScript.bulletSum = FindAnyObjectByType<TigerMovement>().currentSpeed;
-
-                _currentTime = Time.time + _shootData.cadence;
-            }
-
-            _charging = false;
-            _chargeTime = 0f;
+            ReleaseChargedBullet();
         }
+    }
+
+    void StartCharging()
+    {
+        _charging = true;
+        _chargeTime = 0f;
+
+        // Cria a bala carregando parada na frente do player
+        _chargingBullet = Instantiate(_bullet, transform);
+        _chargingBullet.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+    }
+
+    void UpdateChargingBullet()
+    {
+        if (_chargingBullet != null)
+        {
+            float clampedCharge = Mathf.Clamp(_chargeTime, 0, _shootData.maxChargeTime);
+            float chargePercent = clampedCharge / _shootData.maxChargeTime;
+
+            float scale = Mathf.Lerp(minHeight, maxHeight, chargePercent);
+            _chargingBullet.transform.localScale = new Vector3(scale, scale, 1f);
+        }
+    }
+
+    void ReleaseChargedBullet()
+    {
+        float clampedCharge = Mathf.Clamp(_chargeTime, 0, _shootData.maxChargeTime);
+        float chargePercent = clampedCharge / _shootData.maxChargeTime;
+
+        float chargedDamage = Mathf.Lerp(_shootData.minDamage, _shootData.maxDamage, chargePercent);
+
+        if (_chargingBullet != null)
+        {
+            BulletCharge bulletScript = _chargingBullet.GetComponent<BulletCharge>();
+            bulletScript.damage = (int)Mathf.Round(chargedDamage);
+            bulletScript.bulletSum = FindAnyObjectByType<TigerMovement>().currentSpeed;
+            bulletScript.Launch(); // Ativamos o movimento agora
+        }
+
+        _charging = false;
+        _chargingBullet = null;
+        _chargeTime = 0f;
+        _currentTime = Time.time + _shootData.cadence;
     }
 }
