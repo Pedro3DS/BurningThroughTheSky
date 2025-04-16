@@ -26,7 +26,7 @@ public class AsteroidManager : MonoBehaviour
     void Update()
     {
         _currentPos = _cam.WorldToScreenPoint(Vector3.zero);
-        Debug.Log(GetRdnCameraPos());
+        // Debug.Log(GetRdnCameraPos());
     }
     IEnumerator SpawnAsteroid(){
         GameObject newAsteroid = Instantiate(GetRdnAsteroid(), GetRdnCameraPos(), Quaternion.identity);

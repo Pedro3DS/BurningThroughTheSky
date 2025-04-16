@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemySpaceShip : MonoBehaviour
+public class EnemySuicide : MonoBehaviour
 {
     public float speed = 3.0f;
     public float distance = 5.0f;
@@ -15,7 +15,6 @@ public class EnemySpaceShip : MonoBehaviour
     private float _lastShoot = 0f;
     private Rigidbody2D _rb2d;
     private bool _playerAlived = true;
-    private bool _playerDetected = false; 
 
     void Start() {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -24,44 +23,17 @@ public class EnemySpaceShip : MonoBehaviour
         Player.onPlayerDie += CheckPlayer;
     }
 
-    // void Update() {
-    //     if (player != null) {
-    //         float distanciaDoPlayer = Vector3.Distance(transform.position, player.position);
-
-    //         if (distanciaDoPlayer < distance) {
-    //             Vector3 direcao = (player.position - transform.position).normalized;
-    //             _rb2d.velocity = direcao * speed * Time.deltaTime;
-    //             // transform.position += direcao * speed * Time.deltaTime;
-    //         } else {
-    //             // Debug.Log("s");
-    //             Shooting();
-    //         }
-    //     }
-    // }
-    void FixedUpdate()
-    {
-         if (player != null && _playerAlived) {
+    void Update() {
+        if (player != null) {
             float distanciaDoPlayer = Vector3.Distance(transform.position, player.position);
-            if (_playerDetected) {
-                _lastShoot += Time.deltaTime;
 
-                if (distanciaDoPlayer < distance) {
-                    // Está perto: parar e atirar
-                    _rb2d.velocity = Vector2.zero;
-                    Shooting();
-                } else {
-                    // Está longe: perseguir
-                    Vector3 direcao = (player.position - transform.position).normalized;
-                    _rb2d.velocity = direcao * speed * Time.deltaTime;
-                }
-            }
+            if (distanciaDoPlayer < distance) {
+                Vector3 direcao = (player.position - transform.position).normalized;
+                _rb2d.velocity = direcao * speed * Time.deltaTime;
+                // transform.position += direcao * speed * Time.deltaTime;
+            } 
         }
     }
-    void OnBecameVisible()
-    {
-        _playerDetected = true;
-    }
-
 
     public void SpaceShipDestroy(){
         
