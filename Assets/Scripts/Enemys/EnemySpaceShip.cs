@@ -5,49 +5,41 @@ using UnityEngine.UI;
 
 public class EnemySpaceShip : MonoBehaviour
 {
-    public float distanceToShoot = 10f;
-    public Transform playerPos;
+    public float speed = 3.0f;
+    public float distance = 5.0f;
+    public GameObject bullet;
+    public float intervaloTiro = 2.0f;
+    public Transform shootPoints;
 
-    public GameObject enemyShoot;
-    public float shootInterval = 2f;
-    public int life = 3;
+    private Transform player;
+    private float _lastShoot = 0f;
+    private Rigidbody2D _rb2d;
 
-    private float _lastShot = 0f;
-    private Vector3 _lastPlayerPos;
-    private bool _isFacingRight = true;
-    private bool playerAlived = true;
-    [SerializeField] private AudioClip _destroyAudio;
-    [SerializeField] private GameObject _lifeObject;
-    private Slider _lifeSlider;
-    private bool _firstDamage = true;
-    void Start()
-    {
-        Player.onPlayerDie += PlayerDied;
-        _lifeSlider = _lifeObject.GetComponent<Slider>();
-        _lifeSlider.maxValue = life;
-    }
-    void PlayerDied(){
-        playerAlived = false;
+    void Start() {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        _rb2d = gameObject.GetComponent<Rigidbody2D>();
     }
 
-    void Update()
-    {
-        if (playerAlived)
-        {
-            _lastShot += Time.deltaTime;
+    void Update() {
+        if (player != null) {
+            float distanciaDoPlayer = Vector3.Distance(transform.position, player.position);
 
-            // if (playerPos.position.x < transform.position.x && _isFacingRight)
-            // {
-            //     Flip();
-            // }
-            // else if (playerPos.position.x > transform.position.x && !_isFacingRight)
-            // {
-            //     Flip();
-            // }
+            if (distanciaDoPlayer > distance) {
+                Vector3 direcao = (player.position - transform.position).normalized;
+                _rb2d.velocity = direcao * speed * Time.deltaTime;
+                // transform.position += direcao * speed * Time.deltaTime;
+            } else {
+                AtirarNoPlayer();
+            }
+        }
+    }
 
-            _lastPlayerPos = playerPos.position;
-
-            Shooting();
+    void AtirarNoPlayer() {
+        if (Time.time >= _lastShoot + intervaloTiro) {
+            Vector3 direcao = (player.position - shootPoints.position).normalized;
+            GameObject projetil = Instantiate(bullet, shootPoints.position, Quaternion.identity);
+            projetil.GetComponent<Rigidbody2D>().velocity = direcao * 5f;
+            _lastShoot = Time.time;
         }
     }
 
@@ -55,52 +47,52 @@ public class EnemySpaceShip : MonoBehaviour
         
         Destroy(gameObject);
     }
-    void Shooting()
-    {
-        float distance = Vector2.Distance(transform.position, playerPos.position);
-        if (distance <= distanceToShoot && _lastShot >= shootInterval)
-        {
-            Vector2 direction = (playerPos.position - transform.position).normalized;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            GameObject bullet = Instantiate(enemyShoot, transform.position, Quaternion.Euler(0f, 0f, angle));
-            bullet.GetComponent<EnemyBullet>().SetDirection(direction);
+    // void Shooting()
+    // {
+    //     float distance = Vector2.Distance(transform.position, playerPos.position);
+    //     if (distance <= distanceToShoot && _lastShot >= shootInterval)
+    //     {
+    //         Vector2 direction = (playerPos.position - transform.position).normalized;
+    //         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+    //         GameObject bullet = Instantiate(enemyShoot, transform.position, Quaternion.Euler(0f, 0f, angle));
+    //         bullet.GetComponent<EnemyBullet>().SetDirection(direction);
 
-            _lastShot = 0f;
-        }
-    }
-    void Flip()
-    {
-        _isFacingRight = !_isFacingRight;
-        Quaternion newTransform = _isFacingRight ? Quaternion.Euler(0f,0f,0f) : Quaternion.Euler(0f,-180f,0f);
-        transform.rotation = newTransform;
-    }
+    //         _lastShot = 0f;
+    //     }
+    // }
+    // void Flip()
+    // {
+    //     _isFacingRight = !_isFacingRight;
+    //     Quaternion newTransform = _isFacingRight ? Quaternion.Euler(0f,0f,0f) : Quaternion.Euler(0f,-180f,0f);
+    //     transform.rotation = newTransform;
+    // }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
+    // private void OnTriggerEnter2D(Collider2D other)
+    // {
 
-        if (other.gameObject.CompareTag("Shoot1") || other.gameObject.CompareTag("RoarShoot"))
-        {
-            TakeDamage(other.gameObject.GetComponent<Bullet>().damage);
-            CheckLife();
-        }
-    }
-    void CheckLife(){
-        if (life <= 0)
-        {
+    //     if (other.gameObject.CompareTag("NoteBullet") || other.gameObject.CompareTag("RoarShoot"))
+    //     {
+    //         TakeDamage(other.gameObject.GetComponent<Bullet>().damage);
+    //         CheckLife();
+    //     }
+    // }
+    // void CheckLife(){
+    //     if (life <= 0)
+    //     {
 
-            AudioController.instance.PlayAudio(_destroyAudio);
-            _lifeObject.SetActive(false);
-            CameraController.instance.ObjectDestroyed();
-            GetComponent<Animator>().SetTrigger("Die");
-        }
-    }
-    void TakeDamage(int damage){
-        if(_firstDamage){
-            _lifeObject.SetActive(true);
-            _firstDamage = false;
-        }
-        life -= damage;
-        _lifeSlider.value = life;
-    }
+    //         AudioController.instance.PlayAudio(_destroyAudio);
+    //         _lifeObject.SetActive(false);
+    //         CameraController.instance.ObjectDestroyed();
+    //         GetComponent<Animator>().SetTrigger("Die");
+    //     }
+    // }
+    // void TakeDamage(int damage){
+    //     if(_firstDamage){
+    //         _lifeObject.SetActive(true);
+    //         _firstDamage = false;
+    //     }
+    //     life -= damage;
+    //     _lifeSlider.value = life;
+    // }
     
 }
