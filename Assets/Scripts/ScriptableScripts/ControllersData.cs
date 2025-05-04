@@ -6,6 +6,10 @@ using UnityEngine;
 public class ControllersData : ScriptableObject
 {
     [Header("Controller Index")]
-    public int controllerIndex = 0;
+    // public int controllerIndex = 0;
+    public string horizontalMovement = "";
+    public string verticalMovement = "";
+    public string shoot ;
+
     
 }

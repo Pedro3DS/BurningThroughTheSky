@@ -22,40 +22,29 @@ public class EnemySpaceShip : MonoBehaviour
         _rb2d = gameObject.GetComponent<Rigidbody2D>();
 
         Player.onPlayerDie += CheckPlayer;
+        // InvokeRepeating(nameof(Shooting), 2f, shootInterval);
     }
 
-    // void Update() {
-    //     if (player != null) {
-    //         float distanciaDoPlayer = Vector3.Distance(transform.position, player.position);
-
-    //         if (distanciaDoPlayer < distance) {
-    //             Vector3 direcao = (player.position - transform.position).normalized;
-    //             _rb2d.velocity = direcao * speed * Time.deltaTime;
-    //             // transform.position += direcao * speed * Time.deltaTime;
-    //         } else {
-    //             // Debug.Log("s");
-    //             Shooting();
-    //         }
-    //     }
-    // }
-    void FixedUpdate()
+    void Update()
     {
-         if (player != null && _playerAlived) {
-            float distanciaDoPlayer = Vector3.Distance(transform.position, player.position);
-            if (_playerDetected) {
-                _lastShoot += Time.deltaTime;
+        if (!_playerAlived || !_playerDetected || player == null) return;
+        _lastShoot += Time.deltaTime;
+        float distanciaDoPlayer = Vector3.Distance(transform.position, player.position);
 
-                if (distanciaDoPlayer < distance) {
-                    // Está perto: parar e atirar
-                    _rb2d.velocity = Vector2.zero;
-                    Shooting();
-                } else {
-                    // Está longe: perseguir
-                    Vector3 direcao = (player.position - transform.position).normalized;
-                    _rb2d.velocity = direcao * speed * Time.deltaTime;
-                }
-            }
+        if (distanciaDoPlayer < distance)
+        {
+            _rb2d.velocity = Vector2.zero;
+            _lastShoot += Time.deltaTime;
+            Shooting();
         }
+        else
+        {
+            Vector3 direcao = (player.position - transform.position).normalized;
+            _rb2d.velocity = direcao * speed;
+        }
+        Vector2 direction = (player.position - transform.position).normalized;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, angle);
     }
     void OnBecameVisible()
     {
@@ -72,14 +61,18 @@ public class EnemySpaceShip : MonoBehaviour
     }
     void Shooting()
     {
-        if (_lastShoot >= shootInterval)
-        {
-            Vector2 direction = (player.position - transform.position).normalized;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            GameObject bullet = Instantiate(shoot, transform.position, Quaternion.Euler(0f, 0f, angle));
-            bullet.GetComponent<EnemyBullet>().SetDirection(direction);
+        if (!_playerAlived || !_playerDetected) return;
 
-            _lastShoot = 0f;
+        float distanciaDoPlayer = Vector3.Distance(transform.position, player.position);
+        if (distanciaDoPlayer < distance)
+        {
+            if(_lastShoot >= shootInterval){
+                Vector2 direction = (player.position - transform.position).normalized;
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                GameObject bullet = Instantiate(shoot, transform.position, Quaternion.Euler(0f, 0f, angle));
+                bullet.GetComponent<EnemyBullet>().SetDirection(direction);
+                _lastShoot = 0f;
+            }
         }
     }
     // void Flip()

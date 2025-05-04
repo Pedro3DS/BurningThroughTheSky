@@ -8,21 +8,25 @@ public class CoinsManager : MonoBehaviour
 
     void Awake()
     {
-        if(!Instance){
+        if (Instance == null)
+        {
             Instance = this;
-        }else{
-            Destroy(Instance);
+            DontDestroyOnLoad(gameObject); // Se quiser manter entre cenas
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
+    // void OnEnable()
+    // {
+    //     Player.OnPlayerGetCoint += SetCoins;
+    // }
     public void SetCoins(int value){
-        if(PlayerPrefs.HasKey("Coins")){
-            int currentCoins = PlayerPrefs.GetInt("Coins");
-            PlayerPrefs.SetInt("Coins", value += currentCoins);
-
-        }else{
-            PlayerPrefs.SetInt("Coins", value);
-
-        }
+        int currentCoins = PlayerPrefs.GetInt("Coins", 0);
+        int newTotal = currentCoins + value;
+        PlayerPrefs.SetInt("Coins", newTotal);
+        PlayerPrefs.Save();
     }
     public int GetCoins(){
         if(!PlayerPrefs.HasKey("Coins")) return 0;

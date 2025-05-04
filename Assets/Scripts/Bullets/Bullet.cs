@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
-        transform.position += transform.right * (bulletSpeed + (bulletSpeed + bulletSum)) * Time.deltaTime; 
+        transform.position += transform.up * (bulletSpeed + (bulletSpeed + bulletSum)) * Time.deltaTime; 
     }
 
     IEnumerator DestroyBullet()
