@@ -19,7 +19,7 @@ public class TransitionController : MonoBehaviour
     }
     void OnEnable()
     {
-        Player.onPlayerDie += DieTransition;
+        // Player.onPlayerDie += DieTransition;
     }
     void DieTransition(){
         GameObject newCanvas = deathCanvas;

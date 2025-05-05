@@ -19,7 +19,7 @@ public class ControllersManager : MonoBehaviour
 
     private void Update()
     {
-        UpdateGamepadList();
+        // UpdateGamepadList();
     }
 
     public void UpdateGamepadList()
@@ -32,6 +32,7 @@ public class ControllersManager : MonoBehaviour
         }
     }
     public bool ShootAction(int joystickIndex){
+        UpdateGamepadList();
         if(joystickIndex == 10) return Input.GetKeyDown(KeyCode.Space);
         return connectedGamepads[joystickIndex].buttonWest.isPressed;
     }

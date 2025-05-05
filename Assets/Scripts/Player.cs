@@ -16,19 +16,22 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private ControllersData controllData;
+    
 
     void Awake()
     {
         _rb2d = GetComponent<Rigidbody2D>();
     }
-
+    
     void Start()
     {
-        Transition.onTransitionEnd += DestroyPlayer;
+        // Transition.onTransitionEnd += DestroyPlayer;
     }
+    
 
     void Update()
     {
+        // if (!GameManager.Instance.isGameStarted) return;
         float rotationValue = -ControllersManager.Instance.HorizontalMovement(0);
 
         if (rotationValue != 0)
@@ -51,13 +54,14 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
+        DestroyPlayer();
         onPlayerDie?.Invoke();
         Player.onPlayerDie = null;
     }
 
     private void DestroyPlayer()
     {
-        SceneController.instance.ChangeScene("Game2");
+        SceneController.instance.ChangeScene("Game");
     }
 
     public void GetMoney(int value)

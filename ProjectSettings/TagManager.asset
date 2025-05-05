@@ -15,6 +15,7 @@ TagManager:
   - BombExplosion
   - Coin
   - Shoot
+  - NoteBullet
   layers:
   - Default
   - TransparentFX

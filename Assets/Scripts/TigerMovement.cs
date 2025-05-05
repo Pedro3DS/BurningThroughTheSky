@@ -21,18 +21,85 @@ public class TigerMovement : MonoBehaviour
     [SerializeField] private float shootCadence = 0.5f;
     [SerializeField] private AudioClip roarSound;
     private float _nextShoot = 0f;
+    private bool _gameStarted = false;
 
+
+
+    [Header("Shield")]
+    [SerializeField] private GameObject shieldPrefab;
+    [SerializeField] private Transform shieldSpawnPoint;
+    [SerializeField] private float shieldDuration = 5f;
+    [SerializeField] private float shieldCooldown = 10f;
+    [SerializeField] private float boostedSpeed = 15f;
+    [SerializeField] private float boostedCameraSpeed = 0.25f;
+
+    private bool _shieldActive = false;
+    private bool _canUseShield = true;
+    private GameObject _currentShield;
     void Start()
     {
         Player.onPlayerDie += Die;
     }
-
+    void OnEnable()
+    {
+        GameManager.onGameStarted += GameState;
+    }
+    private void GameState(){
+        _gameStarted = true;
+        Debug.Log("bnm,");
+    }
     void FixedUpdate()
     {
+        
         HandleInput();
         Movement();
         ShootRoar();
     }
+    void Update()
+    {
+        // if (!GameManager.Instance.isGameStarted) return;
+        ExitCamera();
+        HandleShield();
+    }
+    void HandleShield()
+    {
+        if (ControllersManager.Instance.ShootAction(1) && _canUseShield)
+        {
+            StartCoroutine(ActivateShield());
+        }
+    }
+    IEnumerator ActivateShield()
+    {
+        _canUseShield = false;
+        _shieldActive = true;
+
+        // Instancia o escudo
+        _currentShield = Instantiate(shieldPrefab, shieldSpawnPoint.position, Quaternion.identity, transform);
+
+        // Aumenta a velocidade
+        float originalSpeed = _acceleration;
+        float originalCameraSpeed = CameraFollow.Instance.smoothSpeed;
+        _acceleration = boostedSpeed;
+        CameraFollow.Instance.smoothSpeed = boostedCameraSpeed;
+
+        float timer = shieldDuration;
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+
+        // Reseta valores
+        _acceleration = originalSpeed;
+        CameraFollow.Instance.smoothSpeed = originalCameraSpeed;
+        Destroy(_currentShield);
+        _shieldActive = false;
+
+        // Aguarda o cooldown
+        yield return new WaitForSeconds(shieldCooldown);
+        _canUseShield = true;
+    }
+
 
     void HandleInput()
     {
@@ -40,17 +107,37 @@ public class TigerMovement : MonoBehaviour
         _movementInput.y = ControllersManager.Instance.VerticalMovement(1);
 
         // Impede voltar para trás (eixo Y negativo)
-        if (_movementInput.y < 0)
-            _movementInput.y = 0;
+        // if (_movementInput.y < 0)
+        //     _movementInput.y = 0;
     }
 
     void Movement()
     {
+        // if (!_gameStarted) return;
         _rb2d.velocity = new Vector2(
             _movementInput.x * _acceleration,
             _movementInput.y * _acceleration
         );
         currentSpeed = _rb2d.velocity.magnitude;
+    }
+    void ExitCamera(){
+        // Clamping to camera
+        Vector3 viewportPos = Camera.main.WorldToViewportPoint(transform.position);
+
+        if (viewportPos.x < 0f) // saiu pela esquerda
+            transform.position = Camera.main.ViewportToWorldPoint(new Vector3(0f, viewportPos.y, Camera.main.nearClipPlane));
+
+        if (viewportPos.x > 1f) // saiu pela direita
+            transform.position = Camera.main.ViewportToWorldPoint(new Vector3(1f, viewportPos.y, Camera.main.nearClipPlane));
+
+        if (viewportPos.y > 1f) // saiu por cima
+            transform.position = Camera.main.ViewportToWorldPoint(new Vector3(viewportPos.x, 1f, Camera.main.nearClipPlane));
+
+        // Morre se ficou para trás (saiu da parte de baixo da tela)
+        if (viewportPos.y < 0f)
+        {
+            _player.Die(); // ou _player.Die() dependendo do script
+        }
     }
 
     void ShootRoar()
@@ -77,6 +164,7 @@ public class TigerMovement : MonoBehaviour
         )
         {
             _player.Die();
+            
         }
 
         if (collision.gameObject.CompareTag("Bomb"))
@@ -92,6 +180,7 @@ public class TigerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Coin"))
         {
             Destroy(collision.gameObject);
+            PointManager.Instance.SetPoints(100);
         }
     }
 
