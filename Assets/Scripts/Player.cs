@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
 
         if (rotationValue != 0)
         {
-            _rotationZ += rotationValue * 200f * Time.deltaTime;
+            _rotationZ += rotationValue * 400f * Time.deltaTime;
             _rotationZ = Mathf.Clamp(_rotationZ, -80f, 80f);
             transform.rotation = Quaternion.Euler(0, 0, _rotationZ);
         }

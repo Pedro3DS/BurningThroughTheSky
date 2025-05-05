@@ -40,14 +40,17 @@ public class CameraFollow : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (isIntro || target == null) return;
+        
+        // if (isIntro || target == null) return;
 
-        Vector3 desiredPosition = target.position + offset;
-        desiredPosition.z = transform.position.z;
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
-        smoothedPosition.x = Mathf.Clamp(smoothedPosition.x, limitLeft, limitRight);
-        smoothedPosition.y = Mathf.Clamp(smoothedPosition.y, limitDown, limitUp);
-        transform.position = smoothedPosition;
+        // Vector3 desiredPosition = target.position + offset;
+        // desiredPosition.z = transform.position.z;
+        // Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+        // smoothedPosition.x = Mathf.Clamp(smoothedPosition.x, limitLeft, limitRight);
+        // smoothedPosition.y = Mathf.Clamp(smoothedPosition.y, limitDown, limitUp);
+        // transform.position = smoothedPosition;
+        if(transform.position.y >= starCloud.position.y)return;
+        transform.position += transform.up * smoothSpeed * Time.deltaTime; 
     }
 }
 

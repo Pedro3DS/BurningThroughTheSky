@@ -91,6 +91,7 @@ public class EnemySpaceShip : MonoBehaviour
     {
         if (other.CompareTag("NoteBullet") || other.CompareTag("RoarShoot"))
         {
+            Destroy(other);
             Bullet bullet = other.GetComponent<Bullet>();
             if (bullet != null)
             {
@@ -99,16 +100,29 @@ public class EnemySpaceShip : MonoBehaviour
             }
         }
     }
+    // void OnCollisionEnter2D(Collision2D collision)
+    // {
+    //     if (collision.gameObject.CompareTag("NoteBullet") || collision.gameObject.CompareTag("RoarShoot"))
+    //     {
+    //         Bullet bullet = collision.gameObject.GetComponent<Bullet>();
+    //         if (bullet != null)
+    //         {
+    //             TakeDamage(bullet.damage);
+    //             CheckLife();
+    //         }
+    //     }
+    // }
 
     void TakeDamage(int damage)
     {
+        if(life - damage<=0) return;
         if (_firstDamage)
         {
             _lifeObject.SetActive(true);
             _firstDamage = false;
         }
-
         life -= damage;
+
         _lifeSlider.value = life;
     }
 

@@ -42,4 +42,8 @@ public class PointManager : MonoBehaviour
         if(!PlayerPrefs.HasKey("Points")) return 0;
         return PlayerPrefs.GetInt("Points");
     }
+    void OnApplicationQuit()
+    {
+        PlayerPrefs.DeleteKey("Points");
+    }
 }

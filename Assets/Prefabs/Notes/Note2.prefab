@@ -14,7 +14,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2253911629886400664, guid: 6fd6059f50b12494a8547db97afe06a5, type: 3}
       propertyPath: m_TagString
-      value: Shoot1
+      value: NoteBullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878350319992209165, guid: 6fd6059f50b12494a8547db97afe06a5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878350319992209165, guid: 6fd6059f50b12494a8547db97afe06a5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878350319992209165, guid: 6fd6059f50b12494a8547db97afe06a5, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 6fd6059f50b12494a8547db97afe06a5, type: 3}
       propertyPath: m_LocalPosition.x

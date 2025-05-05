@@ -75,12 +75,13 @@ public class TigerMovement : MonoBehaviour
 
         // Instancia o escudo
         _currentShield = Instantiate(shieldPrefab, shieldSpawnPoint.position, Quaternion.identity, transform);
+        UiController.Instance.shieldSlider.value = 0;
 
         // Aumenta a velocidade
         float originalSpeed = _acceleration;
         float originalCameraSpeed = CameraFollow.Instance.smoothSpeed;
         _acceleration = boostedSpeed;
-        CameraFollow.Instance.smoothSpeed = boostedCameraSpeed;
+        CameraFollow.Instance.smoothSpeed = boostedCameraSpeed * 2000;
 
         float timer = shieldDuration;
         while (timer > 0)
@@ -95,8 +96,15 @@ public class TigerMovement : MonoBehaviour
         Destroy(_currentShield);
         _shieldActive = false;
 
+        UiController.Instance.shieldSlider.maxValue = shieldCooldown;
         // Aguarda o cooldown
-        yield return new WaitForSeconds(shieldCooldown);
+        for(int i = 0; i <= shieldCooldown; i++){
+
+            UiController.Instance.shieldSlider.value += 1;
+            // UiController.Instance.shieldSlider.colors += 1;
+            yield return new WaitForSeconds(1);
+
+        }
         _canUseShield = true;
     }
 

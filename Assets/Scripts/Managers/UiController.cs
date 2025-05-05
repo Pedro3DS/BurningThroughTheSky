@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,7 +14,14 @@ public class UiController : MonoBehaviour
     public Animator leftPointEffect, rightPointEffect;
 
     private Coroutine _pointAnimCoroutine;
-    [SerializeField] private Slider shieldSlider;
+    public Slider shieldSlider;
+
+    public static UiController Instance = null;
+    void Awake()
+    {
+        if(!Instance) Instance = this;
+        else Destroy(Instance);
+    }
 
     void OnEnable()
     {
