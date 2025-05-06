@@ -80,7 +80,7 @@ public class UiController : MonoBehaviour
         pointsText.text = targetValue.ToString();
     }
 
-    public void ShowCountdown(string message, Color color, float scale)
+    public void ShowCountdown(string message, Color color, float scale, float textSize)
     {
         countdownText.gameObject.SetActive(true);
         leftCountEffect.SetActive(true);
@@ -90,6 +90,7 @@ public class UiController : MonoBehaviour
         rightCountEffect.transform.localScale = new Vector3(scale,scale,scale);
         leftCountEffect.transform.localScale = new Vector3(scale,scale,scale);
         countdownText.color = color;
+        countdownText.fontSize = textSize;
         countdownText.text = message;
 
     }
