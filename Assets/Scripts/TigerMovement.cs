@@ -40,24 +40,17 @@ public class TigerMovement : MonoBehaviour
     {
         Player.onPlayerDie += Die;
     }
-    void OnEnable()
-    {
-        GameManager.onGameStarted += GameState;
-    }
-    private void GameState(){
-        _gameStarted = true;
-        Debug.Log("bnm,");
-    }
     void FixedUpdate()
     {
         
+        if (!GameManager.Instance.isGameStarted) return;
         HandleInput();
         Movement();
         ShootRoar();
     }
     void Update()
     {
-        // if (!GameManager.Instance.isGameStarted) return;
+        if (!GameManager.Instance.isGameStarted) return;
         ExitCamera();
         HandleShield();
     }
@@ -81,7 +74,7 @@ public class TigerMovement : MonoBehaviour
         float originalSpeed = _acceleration;
         float originalCameraSpeed = CameraFollow.Instance.smoothSpeed;
         _acceleration = boostedSpeed;
-        CameraFollow.Instance.smoothSpeed = boostedCameraSpeed * 2000;
+        CameraFollow.Instance.smoothSpeed = originalCameraSpeed *1.5f;
 
         float timer = shieldDuration;
         while (timer > 0)

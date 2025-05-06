@@ -10,6 +10,7 @@ public class UiController : MonoBehaviour
     [SerializeField] private GameObject deathCanvas;
     [SerializeField] private TMP_Text _cointText;
     [SerializeField] private TMP_Text countdownText;
+    public GameObject leftCountEffect, rightCountEffect;
     [SerializeField] private TMP_Text pointsText;
     public Animator leftPointEffect, rightPointEffect;
 
@@ -79,15 +80,25 @@ public class UiController : MonoBehaviour
         pointsText.text = targetValue.ToString();
     }
 
-    public void ShowCountdown(string message)
+    public void ShowCountdown(string message, Color color, float scale)
     {
         countdownText.gameObject.SetActive(true);
+        leftCountEffect.SetActive(true);
+        rightCountEffect.SetActive(true);
+        leftCountEffect.GetComponent<Image>().color = color;
+        rightCountEffect.GetComponent<Image>().color = color;
+        rightCountEffect.transform.localScale = new Vector3(scale,scale,scale);
+        leftCountEffect.transform.localScale = new Vector3(scale,scale,scale);
+        countdownText.color = color;
         countdownText.text = message;
+
     }
 
     public void HideCountdown()
     {
         countdownText.gameObject.SetActive(false);
+        leftCountEffect.SetActive(false);
+        rightCountEffect.SetActive(false);
     }
     
 }
