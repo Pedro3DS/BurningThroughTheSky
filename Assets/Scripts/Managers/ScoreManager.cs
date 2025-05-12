@@ -1,0 +1,73 @@
+using System.Collections.Generic;
+using UnityEngine;
+using System.Linq;
+
+public class ScoreManager : MonoBehaviour
+{
+    private const string KEY = "ScoreBoard";
+
+    public ScoreList scoreList = new ScoreList();
+
+    public static ScoreManager Instance = null;
+
+    void Awake()
+    {
+        if(!Instance) Instance = this;
+        else Destroy(Instance);
+        LoadScores();
+    }
+
+    public void AddScore(string name, int score, int deaths)
+    {
+        ScoreEntry newEntry = new ScoreEntry { playerName = name, score = score, deaths = deaths };
+        scoreList.entries.Add(newEntry);
+
+        scoreList.entries = scoreList.entries
+            .OrderByDescending(e => e.score)
+            .ThenBy(e => e.deaths)
+            .ToList();
+
+        SaveScores();
+    }
+
+    public void SaveScores()
+    {
+        string json = JsonUtility.ToJson(scoreList);
+        PlayerPrefs.SetString(KEY, json);
+        PlayerPrefs.Save();
+    }
+
+    public void LoadScores()
+    {
+        if (PlayerPrefs.HasKey(KEY))
+        {
+            string json = PlayerPrefs.GetString(KEY);
+            scoreList = JsonUtility.FromJson<ScoreList>(json);
+        }
+    }
+
+    public void ClearScores()
+    {
+        PlayerPrefs.DeleteKey(KEY);
+        scoreList.entries.Clear();
+    }
+
+    public List<ScoreEntry> GetTopScores(int max = 10)
+    {
+        return scoreList.entries.Take(max).ToList();
+    }
+
+    [System.Serializable]
+    public class ScoreEntry
+    {
+        public string playerName;
+        public int score;
+        public int deaths;
+    }
+
+    [System.Serializable]
+    public class ScoreList
+    {
+        public List<ScoreEntry> entries = new List<ScoreEntry>();
+    }
+}
