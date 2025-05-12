@@ -17,7 +17,8 @@ public class GameManager : MonoBehaviour
 
     public delegate void OnGameStarted();
     public static event OnGameStarted onGameStarted;
-
+ 
+    public string gameType = "default";
 
     void Awake()
     {
@@ -27,7 +28,12 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(StartGameSequence());
+        if(gameType == "default"){
+
+            StartCoroutine(StartGameSequence());
+        }else if(gameType == "boss"){
+            isGameStarted = true;
+        }
     }
 
     IEnumerator StartGameSequence()

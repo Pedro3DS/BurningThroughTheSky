@@ -30,11 +30,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: dfae2a361679743439caae58bb4ac4e6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.880189
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: dfae2a361679743439caae58bb4ac4e6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.38218164
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: dfae2a361679743439caae58bb4ac4e6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -178,7 +178,7 @@ MonoBehaviour:
   damage: 1
   bulletSum: 1
   timeToDestroy: 1.2
-  explosion: {fileID: 0}
+  explosion: {fileID: 6331686103974322306, guid: 7c8531ffa07309b43b526430fb720c39, type: 3}
 --- !u!82 &-7269543188854676623
 AudioSource:
   m_ObjectHideFlags: 0

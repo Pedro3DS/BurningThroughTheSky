@@ -24,9 +24,14 @@ public class Bullet : MonoBehaviour
         yield return new WaitForSeconds(timeToDestroy);
         if (explosion != null)
         {
-            GameObject newExplosion = Instantiate(explosion, transform.position, Quaternion.identity);
-            Destroy(newExplosion, 1f);
+            // Instantiate(explosion, transform.position, Quaternion.identity);
+            // Destroy(newExplosion, 1f);
         }
+        Destroy(gameObject);
+    }
+
+    public void DestroyThisBullet(){
+        Instantiate(explosion, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }

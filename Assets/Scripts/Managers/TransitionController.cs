@@ -5,6 +5,7 @@ using UnityEngine;
 public class TransitionController : MonoBehaviour
 {
     [SerializeField] private GameObject deathCanvas;
+    [SerializeField] private GameObject transition;
     
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class TransitionController : MonoBehaviour
     {
         // Player.onPlayerDie += DieTransition;
     }
+    
     void DieTransition(){
         GameObject newCanvas = deathCanvas;
         // newCanvas.GetComponent<Canvas>().worldCamera = Camera.main;
