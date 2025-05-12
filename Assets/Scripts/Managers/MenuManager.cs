@@ -31,6 +31,9 @@ public class MenuManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // var activeGamepad = ControllersManager.Instance.GetActiveGamepad();
+        if(Input.GetKeyDown(KeyCode.JoystickButton7)){
+            TransitionController.Instance.LoadStartTransition();
+        }   
     }
 }

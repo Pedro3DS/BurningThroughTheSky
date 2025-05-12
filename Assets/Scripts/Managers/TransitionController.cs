@@ -4,9 +4,25 @@ using UnityEngine;
 
 public class TransitionController : MonoBehaviour
 {
-    [SerializeField] private GameObject deathCanvas;
     [SerializeField] private GameObject transition;
-    
+
+    public static TransitionController Instance;
+
+    void Awake()
+    {
+        if(!Instance) Instance = this;
+        else Destroy(Instance);
+    }
+
+    public void LoadStartTransition(){
+        StartCoroutine(InstantiateTransition(transition));
+    }
+    IEnumerator InstantiateTransition(GameObject trans){
+        // float animTime = trans.GetComponent<Animator>().playbackTime;
+        Instantiate(trans);
+        yield return new WaitForSeconds(1f);
+        AsyncSceneController.Instance.ChangeScene("Game");
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -23,9 +39,4 @@ public class TransitionController : MonoBehaviour
         // Player.onPlayerDie += DieTransition;
     }
     
-    void DieTransition(){
-        GameObject newCanvas = deathCanvas;
-        // newCanvas.GetComponent<Canvas>().worldCamera = Camera.main;
-        Instantiate(newCanvas);
-    }
 }
