@@ -23,7 +23,7 @@ public class AsyncSceneController : MonoBehaviour
     }
     public void ChangeScene(string scene){
         SceneManager.LoadScene(scene);
-        Instantiate(loadingWindow);
+        if(loadingWindow) Instantiate(loadingWindow);
         StartCoroutine(LoadSceneAsync(scene));
     }
 

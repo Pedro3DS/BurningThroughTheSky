@@ -123,15 +123,15 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: TigerPower
     originalName: 
-    pivot: {x: 0.5, y: 0.22580644}
+    pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 60
-      height: 31
+      width: 64
+      height: 64
     spriteID: 625b22c60f38f394ea4dc5919aed6a25
     spriteBone: []
     spriteOutline: []
@@ -153,10 +153,10 @@ ScriptedImporter:
     - name: TigerPower
       frameIndex: 0
       cellRect:
-        x: 2
-        y: 25
-        width: 60
-        height: 31
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       spriteId: 625b22c60f38f394ea4dc5919aed6a25
     linkedCells: []
     parentIndex: -1

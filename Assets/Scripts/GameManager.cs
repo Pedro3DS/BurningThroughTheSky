@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public static event OnGameStarted onGameStarted;
  
     public string gameType = "default";
+    private bool _gameWin = false;
 
     void Awake()
     {
@@ -58,5 +59,20 @@ public class GameManager : MonoBehaviour
     {
         isGameStarted = false;
         // uiController.ShowDeath();
+    }
+    public void GameWin(){
+        _gameWin = true;
+        isGameStarted = false;
+        ScoreManager.Instance.AddScore("AAAAA","AAAAA",PlayerPrefs.GetInt("CurrentPoints"), PlayerPrefs.GetInt("CurrentDeaths"));
+    }
+    void OnApplicationQuit()
+    {
+        DeleteKeys();
+    }
+    private void DeleteKeys(){
+        PlayerPrefs.DeleteKey("CurrentP1");
+        PlayerPrefs.DeleteKey("CurrentP2");
+        PlayerPrefs.DeleteKey("CurrentPoints");
+        PlayerPrefs.DeleteKey("CurrentDeaths");
     }
 }

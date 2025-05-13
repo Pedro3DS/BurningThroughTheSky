@@ -10,6 +10,7 @@ public class UiController : MonoBehaviour
     [SerializeField] private GameObject deathCanvas;
     [SerializeField] private TMP_Text _cointText;
     [SerializeField] private TMP_Text countdownText;
+    [SerializeField] private TMP_Text deathsText;
     public GameObject leftCountEffect, rightCountEffect;
     [SerializeField] private TMP_Text pointsText;
     public Animator leftPointEffect, rightPointEffect;
@@ -23,7 +24,12 @@ public class UiController : MonoBehaviour
         if(!Instance) Instance = this;
         else Destroy(Instance);
     }
-
+    void Start()
+    {
+        if(PlayerPrefs.HasKey("CurrentDeaths"))
+        deathsText.text = $"{PlayerPrefs.GetInt("CurrentDeaths")}X";
+        else deathsText.text = $"0X";
+    }
     void OnEnable()
     {
         Player.onPlayerGetCoint += UpdateCoin;

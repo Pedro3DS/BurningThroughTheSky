@@ -15,13 +15,16 @@ public class TransitionController : MonoBehaviour
     }
 
     public void LoadStartTransition(){
-        StartCoroutine(InstantiateTransition(transition));
+        StartCoroutine(InstantiateTransition(transition, "Game"));
     }
-    IEnumerator InstantiateTransition(GameObject trans){
+    public void LoadTransition(GameObject newTransition, string scene){
+        StartCoroutine(InstantiateTransition(newTransition, scene));
+    }
+    IEnumerator InstantiateTransition(GameObject trans, string scene){
         // float animTime = trans.GetComponent<Animator>().playbackTime;
         Instantiate(trans);
         yield return new WaitForSeconds(1f);
-        AsyncSceneController.Instance.ChangeScene("Game");
+        AsyncSceneController.Instance.ChangeScene(scene);
     }
     // Start is called before the first frame update
     void Start()

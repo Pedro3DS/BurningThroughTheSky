@@ -29,18 +29,18 @@ public class PointManager : MonoBehaviour
     }
 
     public void SetPoints(int value){
-        if(PlayerPrefs.HasKey("Points")){
-            int currentValue = PlayerPrefs.GetInt("Points");
-            PlayerPrefs.SetInt("Points", currentValue += value);
+        if(PlayerPrefs.HasKey("CurrentPoints")){
+            int currentValue = PlayerPrefs.GetInt("CurrentPoints");
+            PlayerPrefs.SetInt("CurrentPoints", currentValue += value);
         }else{
-            PlayerPrefs.SetInt("Points", value);
+            PlayerPrefs.SetInt("CurrentPoints", value);
         }
         onGetPoint?.Invoke();
         
     }
     public int GetPoints(){
-        if(!PlayerPrefs.HasKey("Points")) return 0;
-        return PlayerPrefs.GetInt("Points");
+        if(!PlayerPrefs.HasKey("CurrentPoints")) return 0;
+        return PlayerPrefs.GetInt("PCurrentPointsoints");
     }
     void OnApplicationQuit()
     {

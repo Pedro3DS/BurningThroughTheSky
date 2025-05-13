@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private ControllersData controllData;
+    [SerializeField]
+    private GameObject dieTransition;
     
 
     void Awake()
@@ -54,14 +56,26 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
-        DestroyPlayer();
+        SetDeath();
         onPlayerDie?.Invoke();
         Player.onPlayerDie = null;
+        DestroyPlayer();
+    }
+
+    private void SetDeath(){
+        if(PlayerPrefs.HasKey("CurrentDeaths")){
+            int deaths =  PlayerPrefs.GetInt("CurrentDeaths");
+            PlayerPrefs.SetInt("CurrentDeaths", deaths++);
+        }else{
+            PlayerPrefs.SetInt("CurrentDeaths", 1);
+
+        }
     }
 
     private void DestroyPlayer()
     {
-        SceneController.instance.ChangeScene("Game");
+        TransitionController.Instance.LoadTransition(dieTransition, "Game");
+        // SceneController.instance.ChangeScene("Game");
     }
 
     public void GetMoney(int value)

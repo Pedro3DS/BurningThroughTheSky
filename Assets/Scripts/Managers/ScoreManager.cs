@@ -17,9 +17,9 @@ public class ScoreManager : MonoBehaviour
         LoadScores();
     }
 
-    public void AddScore(string name, int score, int deaths)
+    public void AddScore(string name1, string name2, int score, int deaths)
     {
-        ScoreEntry newEntry = new ScoreEntry { playerName = name, score = score, deaths = deaths };
+        ScoreEntry newEntry = new ScoreEntry { player1Name = name1, player2Name = name2, score = score, deaths = deaths };
         scoreList.entries.Add(newEntry);
 
         scoreList.entries = scoreList.entries
@@ -60,7 +60,8 @@ public class ScoreManager : MonoBehaviour
     [System.Serializable]
     public class ScoreEntry
     {
-        public string playerName;
+        public string player1Name;
+        public string player2Name;
         public int score;
         public int deaths;
     }
