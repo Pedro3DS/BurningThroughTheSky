@@ -41,6 +41,20 @@ public class ControllersManager : MonoBehaviour
             return Input.GetAxis("Horizontal");
         return connectedGamepads[joystickIndex].leftStick.value.x;
     }
+
+    public Gamepad GetActiveGamepad()
+    {
+        foreach (var gamepad in connectedGamepads)
+        {
+            if (gamepad.leftStick.ReadValue().y != 0f)
+            {
+                return gamepad;
+            }
+        }
+
+        return null;
+    }
+
     public float VerticalMovement(int joystickIndex){
         if (connectedGamepads.Count == 0 || joystickIndex == 10)
             return Input.GetAxis("Vertical");

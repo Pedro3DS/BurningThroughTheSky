@@ -115,6 +115,7 @@ public class TigerMovement : MonoBehaviour
     void Movement()
     {
         // if (!_gameStarted) return;
+        _rb2d.velocity = Vector2.up * 1000;
         _rb2d.velocity = new Vector2(
             _movementInput.x * _acceleration,
             _movementInput.y * _acceleration

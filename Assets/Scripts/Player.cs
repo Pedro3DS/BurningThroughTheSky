@@ -32,13 +32,13 @@ public class Player : MonoBehaviour
     void Update()
     {
         // if (!GameManager.Instance.isGameStarted) return;
+        // float rotationValue = -ControllersManager.Instance.HorizontalMovement(0);
+
         float rotationValue = -ControllersManager.Instance.HorizontalMovement(0);
 
         if (rotationValue != 0)
         {
-            _rotationZ += rotationValue * 400f * Time.deltaTime;
-            _rotationZ = Mathf.Clamp(_rotationZ, 0f, -0f);
-            transform.rotation = Quaternion.Euler(0, 0, _rotationZ);
+            transform.Rotate(0, 0, rotationValue * 400f * Time.deltaTime);
         }
 
         if ((Input.GetKeyDown(KeyCode.Space) || ControllersManager.Instance.ShootAction(0)) && Mathf.Abs(_rotationZ) <= 180)
