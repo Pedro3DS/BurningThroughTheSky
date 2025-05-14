@@ -89,10 +89,10 @@ public class EnemySpaceShip : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("NoteBullet") || other.CompareTag("RoarShoot"))
+        if (other.gameObject.CompareTag("NoteBullet") || other.gameObject.CompareTag("RoarShoot"))
         {
             Destroy(other);
-            Bullet bullet = other.GetComponent<Bullet>();
+            Bullet bullet = other.gameObject.GetComponent<Bullet>();
             if (bullet != null)
             {
                 TakeDamage(bullet.damage);

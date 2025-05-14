@@ -40,10 +40,10 @@ public class PointManager : MonoBehaviour
     }
     public int GetPoints(){
         if(!PlayerPrefs.HasKey("CurrentPoints")) return 0;
-        return PlayerPrefs.GetInt("PCurrentPointsoints");
+        return PlayerPrefs.GetInt("CurrentPoints");
     }
     void OnApplicationQuit()
     {
-        PlayerPrefs.DeleteKey("Points");
+        PlayerPrefs.DeleteKey("CurrentPoints");
     }
 }

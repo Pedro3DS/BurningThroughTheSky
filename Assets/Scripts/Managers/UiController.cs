@@ -27,7 +27,7 @@ public class UiController : MonoBehaviour
     void Start()
     {
         if(PlayerPrefs.HasKey("CurrentDeaths"))
-        deathsText.text = $"{PlayerPrefs.GetInt("CurrentDeaths")}X";
+            deathsText.text = $"{PlayerPrefs.GetInt("CurrentDeaths")}X";
         else deathsText.text = $"0X";
     }
     void OnEnable()

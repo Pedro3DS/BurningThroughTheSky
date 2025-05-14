@@ -35,14 +35,22 @@ public class TigerMovement : MonoBehaviour
 
     private bool _shieldActive = false;
     private bool _canUseShield = true;
+    [SerializeField] private bool _inBoss = false;
     private GameObject _currentShield;
+
+    [SerializeField] private float timeSpeedMultiplier = 0.1f;
+    private float _elapsedTime;
+
+    [Header("Rainbow Effect")]
+    [SerializeField] private GameObject rainbowTrailPrefab;
+    [SerializeField] private Transform rainbowSpawnPoint;
     void Start()
     {
         Player.onPlayerDie += Die;
     }
     void FixedUpdate()
     {
-        
+
         if (!GameManager.Instance.isGameStarted) return;
         HandleInput();
         Movement();
@@ -67,6 +75,8 @@ public class TigerMovement : MonoBehaviour
         _shieldActive = true;
 
         // Instancia o escudo
+        GameObject rainbowTrail = Instantiate(rainbowTrailPrefab, rainbowSpawnPoint.position, Quaternion.identity, transform);
+
         _currentShield = Instantiate(shieldPrefab, shieldSpawnPoint.position, Quaternion.identity, transform);
         UiController.Instance.shieldSlider.value = 0;
 
@@ -74,7 +84,7 @@ public class TigerMovement : MonoBehaviour
         float originalSpeed = _acceleration;
         float originalCameraSpeed = CameraFollow.Instance.smoothSpeed;
         _acceleration = boostedSpeed;
-        CameraFollow.Instance.smoothSpeed = originalCameraSpeed *1.5f;
+        CameraFollow.Instance.smoothSpeed = originalCameraSpeed * 1.5f;
 
         float timer = shieldDuration;
         while (timer > 0)
@@ -91,13 +101,16 @@ public class TigerMovement : MonoBehaviour
 
         UiController.Instance.shieldSlider.maxValue = shieldCooldown;
         // Aguarda o cooldown
-        for(int i = 0; i <= shieldCooldown; i++){
+        for (int i = 0; i <= shieldCooldown; i++)
+        {
 
             UiController.Instance.shieldSlider.value += 1;
             // UiController.Instance.shieldSlider.colors += 1;
             yield return new WaitForSeconds(1);
 
         }
+        Destroy(rainbowTrail);
+
         _canUseShield = true;
     }
 
@@ -115,14 +128,29 @@ public class TigerMovement : MonoBehaviour
     void Movement()
     {
         // if (!_gameStarted) return;
-        _rb2d.velocity = Vector2.up * 1000;
-        _rb2d.velocity = new Vector2(
-            _movementInput.x * _acceleration,
-            _movementInput.y * _acceleration
-        );
+        _elapsedTime += Time.fixedDeltaTime;
+        float dynamicSpeed = _acceleration + (_elapsedTime * timeSpeedMultiplier);
+        
+        if (!_inBoss)
+        {
+            float autoUpwardForce = 5f + (_elapsedTime * timeSpeedMultiplier); // aumenta também a força automática
+            _rb2d.velocity = new Vector2(
+                _movementInput.x * dynamicSpeed,
+                (_movementInput.y * dynamicSpeed) + autoUpwardForce
+            );
+        }
+        else
+        {
+            _rb2d.velocity = new Vector2(
+                _movementInput.x * dynamicSpeed,
+                _movementInput.y * dynamicSpeed
+            );
+        }
+
         currentSpeed = _rb2d.velocity.magnitude;
     }
-    void ExitCamera(){
+    void ExitCamera()
+    {
         // Clamping to camera
         Vector3 viewportPos = Camera.main.WorldToViewportPoint(transform.position);
 
@@ -166,7 +194,7 @@ public class TigerMovement : MonoBehaviour
         )
         {
             _player.Die();
-            
+
         }
 
         if (collision.gameObject.CompareTag("Bomb"))

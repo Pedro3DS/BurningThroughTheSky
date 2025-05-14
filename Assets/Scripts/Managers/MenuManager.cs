@@ -19,7 +19,7 @@ public class MenuManager : MonoBehaviour
     {
         var top = ScoreManager.Instance.GetTopScores(scores);
         for(int i = 0; i<=scores; i++){
-            nameText[i].text = $"{top[i].playerName}"; 
+            nameText[i].text = $"{top[i].player1Name}"; 
             scoreText[i].text = $"{top[i].score}"; 
             deathsText[i].text = $"{top[i].deaths}"; 
             // scoreText[i].text = top5[i].playerName; 

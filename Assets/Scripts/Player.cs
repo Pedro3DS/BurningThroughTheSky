@@ -57,9 +57,9 @@ public class Player : MonoBehaviour
     public void Die()
     {
         SetDeath();
+        DestroyPlayer();
         onPlayerDie?.Invoke();
         Player.onPlayerDie = null;
-        DestroyPlayer();
     }
 
     private void SetDeath(){
