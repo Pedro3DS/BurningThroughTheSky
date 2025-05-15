@@ -24,6 +24,11 @@ public class CameraFollow : MonoBehaviour
         else Destroy(Instance);
     }
 
+    public void LockCamera(bool isLocked)
+{
+    cameraPaused = isLocked;
+}
+
     void FixedUpdate()
     {
         if (!GameManager.Instance.isGameStarted || cameraPaused) return;

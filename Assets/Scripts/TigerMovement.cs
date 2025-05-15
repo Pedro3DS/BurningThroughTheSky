@@ -125,6 +125,10 @@ public class TigerMovement : MonoBehaviour
         //     _movementInput.y = 0;
     }
 
+    public void SetInBoss(bool state){
+        _inBoss = state;
+    }
+
     void Movement()
     {
         // if (!_gameStarted) return;

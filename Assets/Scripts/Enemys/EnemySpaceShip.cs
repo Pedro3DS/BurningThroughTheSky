@@ -25,6 +25,8 @@ public class EnemySpaceShip : MonoBehaviour
 
     [Header("Audio")]
     public AudioClip _destroyAudio;
+    private HordersManager _manager;
+
 
     void Start()
     {
@@ -89,16 +91,20 @@ public class EnemySpaceShip : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("NoteBullet") || other.gameObject.CompareTag("RoarShoot"))
+        if (other.gameObject.CompareTag("NoteBullet"))
         {
-            Destroy(other);
             Bullet bullet = other.gameObject.GetComponent<Bullet>();
             if (bullet != null)
             {
                 TakeDamage(bullet.damage);
+                bullet.DestroyThisBullet();
                 CheckLife();
             }
         }
+    }
+    public void SetManager(HordersManager manager)
+    {
+        _manager = manager;
     }
     // void OnCollisionEnter2D(Collision2D collision)
     // {
@@ -133,6 +139,11 @@ public class EnemySpaceShip : MonoBehaviour
             AudioController.instance.PlayAudio(_destroyAudio);
             _lifeObject.SetActive(false);
             CameraController.instance.ObjectDestroyed();
+
+            // Notifica o manager da morte
+            if(_manager)
+            _manager?.NotifyEnemyDeath(gameObject);
+
             GetComponent<Animator>().SetTrigger("Die");
         }
     }
