@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
@@ -18,6 +17,9 @@ public class Player : MonoBehaviour
     private ControllersData controllData;
     [SerializeField]
     private GameObject dieTransition;
+
+    [SerializeField] private AudioClip[] dieAudios;
+    private bool _playerDied = false;
     
 
     void Awake()
@@ -56,7 +58,12 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
-        SetDeath();
+        if (_playerDied) return;
+        _playerDied = true;
+        AudioController.instance.PlayAudio(dieAudios[UnityEngine.Random.Range(0,dieAudios.Length-1)]);
+        PointManager.Instance.AddDeath();
+        PointManager.Instance.ResetPoints();
+        
         DestroyPlayer();
         onPlayerDie?.Invoke();
         Player.onPlayerDie = null;
@@ -74,6 +81,7 @@ public class Player : MonoBehaviour
 
     private void DestroyPlayer()
     {
+
         TransitionController.Instance.LoadTransition(dieTransition, "Game");
         // SceneController.instance.ChangeScene("Game");
     }

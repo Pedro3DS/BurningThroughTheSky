@@ -1,228 +1,188 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TigerMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D _rb2d;
-    [SerializeField] private float _maxSpeed = 10f;
-    [SerializeField] private float _acceleration = 10f;
-    [SerializeField] private Player _player;
-    private Vector2 _movementInput;
-    public float currentSpeed;
-
-    public delegate void OnTigerDie();
-    public static event OnTigerDie onTigerDie;
-
-    [SerializeField]
-    private ControllersData controllData;
-
-    [Header("Shoot Roar")]
+    [SerializeField] private float baseSpeed = 10f;
+    [SerializeField] private float speedIncreaseRate = 0.1f;
+    [SerializeField] private float maxSpeed = 20f;
     [SerializeField] private GameObject bullet;
     [SerializeField] private float shootCadence = 0.5f;
     [SerializeField] private AudioClip roarSound;
-    private float _nextShoot = 0f;
-    private bool _gameStarted = false;
+    [SerializeField] private AudioClip shield;
+    [SerializeField] private AudioClip colect;
+
+    private float _nextShoot;
+    private bool _canUseShield = true;
+    [SerializeField] private int maxShields = 4;
+    private int currentShields = 0;
 
 
+    private Vector2 _input;
+    private float _elapsedTime;
+    private bool _inBoss = false;
+    public float currentSpeed;
+
+    [SerializeField] private Player _player;
 
     [Header("Shield")]
-    [SerializeField] private GameObject shieldPrefab;
-    [SerializeField] private Transform shieldSpawnPoint;
+    [SerializeField] private Slider shieldSlider;
+    [SerializeField] private GameObject shieldObject;
     [SerializeField] private float shieldDuration = 5f;
     [SerializeField] private float shieldCooldown = 10f;
-    [SerializeField] private float boostedSpeed = 15f;
-    [SerializeField] private float boostedCameraSpeed = 0.25f;
 
-    private bool _shieldActive = false;
-    private bool _canUseShield = true;
-    [SerializeField] private bool _inBoss = false;
-    private GameObject _currentShield;
-
-    [SerializeField] private float timeSpeedMultiplier = 0.1f;
-    private float _elapsedTime;
-
-    [Header("Rainbow Effect")]
-    [SerializeField] private GameObject rainbowTrailPrefab;
-    [SerializeField] private Transform rainbowSpawnPoint;
+    private bool shieldActive = false;
+    private bool shieldOnCooldown = false;
+    public bool playerCanTakeDamage = true;
+    [SerializeField] private GameObject explosion;
     void Start()
     {
-        Player.onPlayerDie += Die;
+        UiController.Instance.UpdateShieldCount(currentShields);
     }
     void FixedUpdate()
     {
-
         if (!GameManager.Instance.isGameStarted) return;
-        HandleInput();
-        Movement();
-        ShootRoar();
-    }
-    void Update()
-    {
-        if (!GameManager.Instance.isGameStarted) return;
-        ExitCamera();
-        HandleShield();
-    }
-    void HandleShield()
-    {
-        if (ControllersManager.Instance.ShootAction(1) && _canUseShield)
-        {
-            StartCoroutine(ActivateShield());
-        }
-    }
-    IEnumerator ActivateShield()
-    {
-        _canUseShield = false;
-        _shieldActive = true;
 
-        // Instancia o escudo
-        GameObject rainbowTrail = Instantiate(rainbowTrailPrefab, rainbowSpawnPoint.position, Quaternion.identity, transform);
+        _input = new Vector2(
+            ControllersManager.Instance.HorizontalMovement(1),
+            ControllersManager.Instance.VerticalMovement(1)
+        );
 
-        _currentShield = Instantiate(shieldPrefab, shieldSpawnPoint.position, Quaternion.identity, transform);
-        UiController.Instance.shieldSlider.value = 0;
-
-        // Aumenta a velocidade
-        float originalSpeed = _acceleration;
-        float originalCameraSpeed = CameraFollow.Instance.smoothSpeed;
-        _acceleration = boostedSpeed;
-        CameraFollow.Instance.smoothSpeed = originalCameraSpeed * 1.5f;
-
-        float timer = shieldDuration;
-        while (timer > 0)
-        {
-            timer -= Time.deltaTime;
-            yield return null;
-        }
-
-        // Reseta valores
-        _acceleration = originalSpeed;
-        CameraFollow.Instance.smoothSpeed = originalCameraSpeed;
-        Destroy(_currentShield);
-        _shieldActive = false;
-
-        UiController.Instance.shieldSlider.maxValue = shieldCooldown;
-        // Aguarda o cooldown
-        for (int i = 0; i <= shieldCooldown; i++)
-        {
-
-            UiController.Instance.shieldSlider.value += 1;
-            // UiController.Instance.shieldSlider.colors += 1;
-            yield return new WaitForSeconds(1);
-
-        }
-        Destroy(rainbowTrail);
-
-        _canUseShield = true;
-    }
-
-
-    void HandleInput()
-    {
-        _movementInput.x = ControllersManager.Instance.HorizontalMovement(1);
-        _movementInput.y = ControllersManager.Instance.VerticalMovement(1);
-
-        // Impede voltar para trás (eixo Y negativo)
-        // if (_movementInput.y < 0)
-        //     _movementInput.y = 0;
-    }
-
-    public void SetInBoss(bool state){
-        _inBoss = state;
-    }
-
-    void Movement()
-    {
-        // if (!_gameStarted) return;
         _elapsedTime += Time.fixedDeltaTime;
-        float dynamicSpeed = _acceleration + (_elapsedTime * timeSpeedMultiplier);
-        
+        float speed = Mathf.Min(baseSpeed + _elapsedTime * speedIncreaseRate, maxSpeed);
+
         if (!_inBoss)
-        {
-            float autoUpwardForce = 5f + (_elapsedTime * timeSpeedMultiplier); // aumenta também a força automática
-            _rb2d.velocity = new Vector2(
-                _movementInput.x * dynamicSpeed,
-                (_movementInput.y * dynamicSpeed) + autoUpwardForce
-            );
-        }
+            _rb2d.velocity = new Vector2(_input.x * speed, (_input.y * speed) + 5f);
         else
-        {
-            _rb2d.velocity = new Vector2(
-                _movementInput.x * dynamicSpeed,
-                _movementInput.y * dynamicSpeed
-            );
-        }
+            _rb2d.velocity = _input * speed;
 
         currentSpeed = _rb2d.velocity.magnitude;
     }
-    void ExitCamera()
+
+    void Update()
     {
-        // Clamping to camera
-        Vector3 viewportPos = Camera.main.WorldToViewportPoint(transform.position);
+        if (!GameManager.Instance.isGameStarted) return;
 
-        if (viewportPos.x < 0f) // saiu pela esquerda
-            transform.position = Camera.main.ViewportToWorldPoint(new Vector3(0f, viewportPos.y, Camera.main.nearClipPlane));
-
-        if (viewportPos.x > 1f) // saiu pela direita
-            transform.position = Camera.main.ViewportToWorldPoint(new Vector3(1f, viewportPos.y, Camera.main.nearClipPlane));
-
-        if (viewportPos.y > 1f) // saiu por cima
-            transform.position = Camera.main.ViewportToWorldPoint(new Vector3(viewportPos.x, 1f, Camera.main.nearClipPlane));
-
-        // Morre se ficou para trás (saiu da parte de baixo da tela)
-        if (viewportPos.y < 0f)
-        {
-            _player.Die(); // ou _player.Die() dependendo do script
-        }
-    }
-
-    void ShootRoar()
-    {
         if (ControllersManager.Instance.ShootAction(1) && Time.time >= _nextShoot)
         {
             _nextShoot = Time.time + shootCadence;
-            AudioController.instance.PlayAudio(roarSound);
             Instantiate(bullet, transform.position, Quaternion.identity);
+            AudioController.instance.PlayAudio(roarSound);
         }
+
+        // Ativar escudo se houver algum disponível, não estiver em uso e não estiver em cooldown
+        if (ControllersManager.Instance.ShootAction(1) && currentShields >= 0 && !shieldActive && !shieldOnCooldown)
+        {
+            StartCoroutine(ActivateShield());
+        }
+        // if (Jo && currentShields >= 0 && !shieldActive && !shieldOnCooldown)
+        // {
+        //     StartCoroutine(ActivateShield());
+        // }
+
+        // Morrer se sair da tela
+        if (Camera.main.WorldToViewportPoint(transform.position).y < 0f)
+            _player.Die();
     }
 
-    public void Die()
+    IEnumerator ActivateShield()
     {
-        Destroy(gameObject);
+        currentShields--;
+        UiController.Instance.UpdateShieldCount(currentShields);
+        AudioController.instance.PlayAudio(shield);
+
+        shieldActive = true;
+        playerCanTakeDamage = false;
+        shieldOnCooldown = true;
+        shieldObject.SetActive(true);
+        shieldSlider.gameObject.SetActive(true);
+        shieldSlider.maxValue = shieldDuration;
+        shieldSlider.value = shieldDuration;
+
+        // float elapsed = 0f;
+        // while (elapsed < shieldDuration)
+        // {
+        //     elapsed += Time.deltaTime;
+        //     shieldSlider.value = shieldDuration - elapsed;
+        //     yield return null;
+        // }
+        for (int i = 0; i <= shieldDuration; i++)
+        {
+            shieldSlider.value = shieldDuration - i;
+            yield return new WaitForSeconds(1);
+            
+        }
+        shieldObject.SetActive(false);
+        playerCanTakeDamage = true;
+        shieldActive = false;
+
+        shieldSlider.maxValue = shieldCooldown;
+        shieldSlider.value = 0;
+        
+        for (int i = 0; i <= shieldCooldown; i++)
+        {
+            yield return new WaitForSeconds(i);
+            shieldSlider.value += i;
+
+        }
+
+
+        shieldSlider.gameObject.SetActive(false);
+        shieldOnCooldown = false;
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+
+    public void SetInBoss(bool state)
     {
-        if (
-            collision.gameObject.CompareTag("Asteroid") ||
-            collision.gameObject.CompareTag("Dust") ||
-            collision.gameObject.CompareTag("Enemy")
-        )
-        {
-            _player.Die();
+        _inBoss = state;
+    }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (playerCanTakeDamage)
+        {
+            if (other.CompareTag("Enemy") || other.CompareTag("Asteroid") || other.CompareTag("EnemyShoot") || other.CompareTag("Dust"))
+            {
+                _player.Die();
+            }
+            
+            if (other.CompareTag("Bomb"))
+            {
+                other.GetComponent<Bomb>().Explode();
+            }
         }
 
-        if (collision.gameObject.CompareTag("Bomb"))
+        if (other.CompareTag("Coin"))
         {
-            collision.gameObject.GetComponent<Bomb>().Explode();
-        }
-
-        if (collision.gameObject.CompareTag("EnemyShoot"))
-        {
-            _player.Die();
-        }
-
-        if (collision.gameObject.CompareTag("Coin"))
-        {
-            Destroy(collision.gameObject);
+            AudioController.instance.PlayAudio(colect);
+            Destroy(other.gameObject);
             PointManager.Instance.SetPoints(100);
+        }
+
+        if (other.CompareTag("SpeedPickUp"))
+        {
+            Destroy(other.gameObject);
+            maxSpeed += 2;
+            CameraFollow.Instance.smoothSpeed += 1;
+        }
+        if (other.CompareTag("ShieldPickup"))
+        {
+            Destroy(other.gameObject);
+            if (currentShields <= maxShields)
+            {
+                currentShields+=1;
+                UiController.Instance.UpdateShieldCount(currentShields);
+            }
         }
     }
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("BombExplosion"))
+        if (other.CompareTag("BombExplosion"))
         {
-            Die();
+            _player.Die();
         }
     }
 }

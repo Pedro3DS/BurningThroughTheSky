@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 5
-  damage: 1
+  damage: 19
   bulletSum: 1
   timeToDestroy: 1.2
   explosion: {fileID: 6331686103974322306, guid: 7c8531ffa07309b43b526430fb720c39, type: 3}

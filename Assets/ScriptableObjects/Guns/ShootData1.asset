@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: ShootData1
   m_EditorClassIdentifier: 
   minDamage: 1
-  maxDamage: 1
+  maxDamage: 19
   cadence: 0.29
   maxChargeTime: 2

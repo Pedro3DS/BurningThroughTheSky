@@ -11,24 +11,29 @@ public class UiController : MonoBehaviour
     [SerializeField] private TMP_Text _cointText;
     [SerializeField] private TMP_Text countdownText;
     [SerializeField] private TMP_Text deathsText;
+    [SerializeField] private TMP_Text scoreText;
     public GameObject leftCountEffect, rightCountEffect;
     [SerializeField] private TMP_Text pointsText;
     public Animator leftPointEffect, rightPointEffect;
 
     private Coroutine _pointAnimCoroutine;
     public Slider shieldSlider;
+    [SerializeField] private TMP_Text shieldCountText;
+
 
     public static UiController Instance = null;
     void Awake()
     {
-        if(!Instance) Instance = this;
+        if (!Instance) Instance = this;
         else Destroy(Instance);
     }
     void Start()
     {
-        if(PlayerPrefs.HasKey("CurrentDeaths"))
-            deathsText.text = $"{PlayerPrefs.GetInt("CurrentDeaths")}X";
-        else deathsText.text = $"0X";
+        UpdateScore(0);
+        // UpdateDeaths(0);
+        // if (PlayerPrefs.HasKey("CurrentDeaths"))
+        //     deathsText.text = $"{PlayerPrefs.GetInt("CurrentDeaths")}X";
+        // else deathsText.text = $"0X";
     }
     void OnEnable()
     {
@@ -44,10 +49,15 @@ public class UiController : MonoBehaviour
         PointManager.onGetPoint -= UpdatePoints;
     }
 
-    // public void ShowDeath()
-    // {
-    //     deathCanvas.SetActive(true);
-    // }
+    public void UpdateScore(int value)
+    {
+        scoreText.text = $"{value}";
+    }
+
+    public void UpdateDeaths(int value)
+    {
+        deathsText.text = $"{value}X";
+    }
 
     public void UpdateCoin(int value)
     {
@@ -58,6 +68,10 @@ public class UiController : MonoBehaviour
     public void UpdateShieldBar(float value)
     {
         shieldSlider.value = value;
+    }
+    public void UpdateShieldCount(int count)
+    {
+        shieldCountText.text = $"{count}X";
     }
 
     public void UpdatePoints()
@@ -93,8 +107,8 @@ public class UiController : MonoBehaviour
         rightCountEffect.SetActive(true);
         leftCountEffect.GetComponent<Image>().color = color;
         rightCountEffect.GetComponent<Image>().color = color;
-        rightCountEffect.transform.localScale = new Vector3(scale,scale,scale);
-        leftCountEffect.transform.localScale = new Vector3(scale,scale,scale);
+        rightCountEffect.transform.localScale = new Vector3(scale, scale, scale);
+        leftCountEffect.transform.localScale = new Vector3(scale, scale, scale);
         countdownText.color = color;
         countdownText.fontSize = textSize;
         countdownText.text = message;
@@ -107,5 +121,9 @@ public class UiController : MonoBehaviour
         leftCountEffect.SetActive(false);
         rightCountEffect.SetActive(false);
     }
+    // public int GetCoins()
+    // {
+    //     return coinAmount; // ou como você armazenar as moedas
+    // }
     
 }

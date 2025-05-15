@@ -41,6 +41,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1747878373860349765, guid: 2c13588efe2833140b686c98334bc95e, type: 3}
+      propertyPath: explosion
+      value: 
+      objectReference: {fileID: 20035724519036886, guid: 34c6fb956ac1a3847a150be1b6cd0c49, type: 3}
+    - target: {fileID: 1747878373860349765, guid: 2c13588efe2833140b686c98334bc95e, type: 3}
       propertyPath: _lifeObject
       value: 
       objectReference: {fileID: 2085260524201001231}

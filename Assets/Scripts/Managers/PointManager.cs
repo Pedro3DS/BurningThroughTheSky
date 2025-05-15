@@ -1,49 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PointManager : MonoBehaviour
 {
-    
+    public static PointManager Instance;
 
-    public static PointManager Instance = null;
+    public static Action onGetPoint;
 
-    public delegate void OnGetPoint();
-    public static OnGetPoint onGetPoint;
-    // Start is called before the first frame update
+    private int score = 0;
+    private int deaths = 0;
+
     void Awake()
     {
-        if(!Instance) Instance = this;
-        else Destroy(Instance);
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
     }
 
-    void Start()
+    public void SetPoints(int value)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void SetPoints(int value){
-        if(PlayerPrefs.HasKey("CurrentPoints")){
-            int currentValue = PlayerPrefs.GetInt("CurrentPoints");
-            PlayerPrefs.SetInt("CurrentPoints", currentValue += value);
-        }else{
-            PlayerPrefs.SetInt("CurrentPoints", value);
-        }
+        score += value;
         onGetPoint?.Invoke();
-        
     }
-    public int GetPoints(){
-        if(!PlayerPrefs.HasKey("CurrentPoints")) return 0;
-        return PlayerPrefs.GetInt("CurrentPoints");
-    }
-    void OnApplicationQuit()
+
+    public int GetPoints() => score;
+
+    public void ResetPoints()
     {
-        PlayerPrefs.DeleteKey("CurrentPoints");
+        score = 0;
+        onGetPoint?.Invoke();
     }
+
+    public void AddDeath()
+    {
+        deaths++;
+        UiController.Instance.UpdateDeaths(deaths); // Chama UI diretamente
+    }
+
+    public int GetDeaths() => deaths;
 }

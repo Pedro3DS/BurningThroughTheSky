@@ -17,6 +17,8 @@ TagManager:
   - Shoot
   - NoteBullet
   - Hand
+  - ShieldPickup
+  - SpeedPickUp
   layers:
   - Default
   - TransparentFX

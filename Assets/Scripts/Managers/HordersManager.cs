@@ -1,68 +1,78 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class HordersManager : MonoBehaviour
 {
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private TigerMovement _player;
-    [SerializeField] private List<int> hordeEnemyCounts = new List<int>() { 3, 5, 8 }; // quantidade de inimigos por horda
-    [SerializeField] private float cameraSpeedBoost = 0.2f; // quanto a câmera aumenta por horda
+    [SerializeField] private TMP_Text hordeText;
+    [SerializeField] private float spawnInterval = 1f;
 
     private List<GameObject> activeEnemies = new List<GameObject>();
-    private int currentHordeIndex = 0;
     private bool hordeActive = false;
 
-    public void StartHorde()
+    public static HordersManager Instance;
+
+    void Awake()
     {
-        if (currentHordeIndex >= hordeEnemyCounts.Count)
-        {
-            Debug.Log("Todas as hordas concluídas.");
-            return;
-        }
+        if (!Instance) Instance = this;
+        else Destroy(gameObject);
+    }
+
+    public void StartHordeAtPoint(HordePoint point)
+    {
+        if (hordeActive) return;
 
         hordeActive = true;
         _player.SetInBoss(true);
         CameraFollow.Instance.LockCamera(true);
 
-        SpawnEnemies(hordeEnemyCounts[currentHordeIndex]);
+        StartCoroutine(HordeRoutine(point.enemiesToSpawn));
     }
 
-    void SpawnEnemies(int amount)
+    IEnumerator HordeRoutine(int enemiesToSpawn)
     {
-        for (int i = 0; i < amount; i++)
+        hordeText.gameObject.SetActive(true);
+        hordeText.text = $"Horda com {enemiesToSpawn} inimigos!";
+        yield return new WaitForSeconds(2f);
+        hordeText.gameObject.SetActive(false);
+
+        for (int i = 0; i < enemiesToSpawn; i++)
         {
-            Vector3 spawnPos = GetRandomSpawnPositionAroundCamera();
-            GameObject enemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
-            activeEnemies.Add(enemy);
-            enemy.GetComponent<EnemySpaceShip>().SetManager(this);
+            SpawnEnemyAtScreenEdge();
+            yield return new WaitForSeconds(spawnInterval);
         }
     }
 
-    Vector3 GetRandomSpawnPositionAroundCamera()
+    void SpawnEnemyAtScreenEdge()
     {
-        float distanceFromCamera = 8f; // distância do spawn em relação à câmera
-        Vector2[] directions = new Vector2[]
+        Vector3 spawnPosition = GetRandomScreenEdgePosition();
+        GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        enemy.GetComponent<EnemySpaceShip>().SetManager(this);
+        activeEnemies.Add(enemy);
+    }
+
+    Vector3 GetRandomScreenEdgePosition()
+    {
+        Camera cam = Camera.main;
+        float z = Mathf.Abs(cam.transform.position.z);
+
+        int edge = Random.Range(0, 4); // 0=left, 1=right, 2=top, 3=bottom
+        Vector3 viewportPos = Vector3.zero;
+
+        switch (edge)
         {
-            Vector2.up,
-            Vector2.down,
-            Vector2.left,
-            Vector2.right
-        };
+            case 0: viewportPos = new Vector3(0f, Random.Range(0f, 1f), z); break;
+            case 1: viewportPos = new Vector3(1f, Random.Range(0f, 1f), z); break;
+            case 2: viewportPos = new Vector3(Random.Range(0f, 1f), 1f, z); break;
+            case 3: viewportPos = new Vector3(Random.Range(0f, 1f), 0f, z); break;
+        }
 
-        Vector2 randomDir = directions[Random.Range(0, directions.Length)];
-        Vector3 cameraPos = Camera.main.transform.position;
-
-        Vector3 spawnPos = cameraPos + (Vector3)randomDir * distanceFromCamera;
-
-        // Adiciona variação
-        spawnPos += new Vector3(
-            Random.Range(-2f, 2f),
-            Random.Range(-2f, 2f),
-            0f
-        );
-
-        return spawnPos;
+        Vector3 worldPos = cam.ViewportToWorldPoint(viewportPos);
+        worldPos.z = 0f;
+        return worldPos;
     }
 
     public void NotifyEnemyDeath(GameObject enemy)
@@ -72,6 +82,7 @@ public class HordersManager : MonoBehaviour
         if (activeEnemies.Count <= 0)
         {
             EndHorde();
+            
         }
     }
 
@@ -80,11 +91,7 @@ public class HordersManager : MonoBehaviour
         hordeActive = false;
         _player.SetInBoss(false);
         CameraFollow.Instance.LockCamera(false);
+        CameraFollow.Instance.IncreaseSpeed(0.1f);
         Debug.Log("Horda finalizada!");
-
-        currentHordeIndex++;
-
-        // Aumenta a velocidade da câmera gradualmente
-        CameraFollow.Instance.IncreaseSpeed(cameraSpeedBoost);
     }
 }

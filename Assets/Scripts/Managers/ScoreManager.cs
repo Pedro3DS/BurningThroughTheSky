@@ -1,27 +1,32 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 using System.Linq;
 
 public class ScoreManager : MonoBehaviour
 {
     private const string KEY = "ScoreBoard";
-
     public ScoreList scoreList = new ScoreList();
-
     public static ScoreManager Instance = null;
 
     void Awake()
     {
-        if(!Instance) Instance = this;
-        else Destroy(Instance);
+        if (!Instance) Instance = this;
+        else Destroy(gameObject);
+
         LoadScores();
     }
 
     public void AddScore(string name1, string name2, int score, int deaths)
     {
-        ScoreEntry newEntry = new ScoreEntry { player1Name = name1, player2Name = name2, score = score, deaths = deaths };
-        scoreList.entries.Add(newEntry);
+        ScoreEntry entry = new ScoreEntry
+        {
+            player1Name = name1,
+            player2Name = name2,
+            score = score,
+            deaths = deaths
+        };
 
+        scoreList.entries.Add(entry);
         scoreList.entries = scoreList.entries
             .OrderByDescending(e => e.score)
             .ThenBy(e => e.deaths)

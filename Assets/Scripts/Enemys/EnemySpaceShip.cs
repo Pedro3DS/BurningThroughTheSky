@@ -27,6 +27,7 @@ public class EnemySpaceShip : MonoBehaviour
     public AudioClip _destroyAudio;
     private HordersManager _manager;
 
+    [SerializeField] private GameObject explosion;
 
     void Start()
     {
@@ -96,7 +97,7 @@ public class EnemySpaceShip : MonoBehaviour
             Bullet bullet = other.gameObject.GetComponent<Bullet>();
             if (bullet != null)
             {
-                TakeDamage(bullet.damage);
+                TakeDamage(1);
                 bullet.DestroyThisBullet();
                 CheckLife();
             }
@@ -106,22 +107,13 @@ public class EnemySpaceShip : MonoBehaviour
     {
         _manager = manager;
     }
-    // void OnCollisionEnter2D(Collision2D collision)
-    // {
-    //     if (collision.gameObject.CompareTag("NoteBullet") || collision.gameObject.CompareTag("RoarShoot"))
-    //     {
-    //         Bullet bullet = collision.gameObject.GetComponent<Bullet>();
-    //         if (bullet != null)
-    //         {
-    //             TakeDamage(bullet.damage);
-    //             CheckLife();
-    //         }
-    //     }
-    // }
-
+    public void NotifyDeath()
+    {
+        if (_manager != null)
+            _manager.NotifyEnemyDeath(gameObject);
+    }
     void TakeDamage(int damage)
     {
-        if(life - damage<=0) return;
         if (_firstDamage)
         {
             _lifeObject.SetActive(true);
@@ -138,13 +130,17 @@ public class EnemySpaceShip : MonoBehaviour
         {
             AudioController.instance.PlayAudio(_destroyAudio);
             _lifeObject.SetActive(false);
-            CameraController.instance.ObjectDestroyed();
+            // CameraController.instance.ObjectDestroyed();
+            NotifyDeath();
 
             // Notifica o manager da morte
-            if(_manager)
-            _manager?.NotifyEnemyDeath(gameObject);
+            if (_manager)
+                _manager?.NotifyEnemyDeath(gameObject);
 
-            GetComponent<Animator>().SetTrigger("Die");
+            Instantiate(explosion, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+            // GetComponent<Animator>().SetTrigger("Die");
         }
     }
+    
 }
