@@ -21,10 +21,10 @@ public class TigerMovement : MonoBehaviour
     [SerializeField] private int maxShields = 4;
     private int currentShields = 0;
 
-
     private Vector2 _input;
     private float _elapsedTime;
     [SerializeField] private bool _inBoss = false;
+    [SerializeField] private bool _inPause = false;
     public float currentSpeed;
 
     [SerializeField] private Player _player;
@@ -41,10 +41,13 @@ public class TigerMovement : MonoBehaviour
     [SerializeField] private GameObject explosion;
 
     [SerializeField] private GameObject bossTransition;
+
     void Start()
     {
+        currentShields = PlayerPrefs.GetInt("Tiger_Shields", 0);
         UiController.Instance.UpdateShieldCount(currentShields);
     }
+
     void FixedUpdate()
     {
         if (!GameManager.Instance.isGameStarted) return;
@@ -57,10 +60,10 @@ public class TigerMovement : MonoBehaviour
         _elapsedTime += Time.fixedDeltaTime;
         float speed = Mathf.Min(baseSpeed + _elapsedTime * speedIncreaseRate, maxSpeed);
 
-        if (!_inBoss)
-            _rb2d.velocity = new Vector2(_input.x * speed, (_input.y * speed) + 5f);
-        else
+        if (_inBoss || _inPause)
             _rb2d.velocity = _input * speed;
+        else
+            _rb2d.velocity = new Vector2(_input.x * speed, (_input.y * speed) + 5f);
 
         currentSpeed = _rb2d.velocity.magnitude;
     }
@@ -76,31 +79,23 @@ public class TigerMovement : MonoBehaviour
             AudioController.instance.PlayAudio(roarSound);
         }
 
-        // Ativar escudo se houver algum disponível, não estiver em uso e não estiver em cooldown
         if (ControllersManager.Instance.ShootAction(1) && currentShields > 0 && !shieldActive && !shieldOnCooldown)
         {
             StartCoroutine(ActivateShield());
         }
-        // if (Jo && currentShields >= 0 && !shieldActive && !shieldOnCooldown)
-        // {
-        //     StartCoroutine(ActivateShield());
-        // }
 
-        // Morrer se sair da tela
         if (_inBoss)
         {
             Vector3 viewPos = Camera.main.WorldToViewportPoint(transform.position);
 
             if (viewPos.y < 0f)
             {
-                // Saiu por baixo da câmera, volta pelo topo
                 Vector3 newPos = transform.position;
                 newPos.y = Camera.main.ViewportToWorldPoint(new Vector3(viewPos.x, 1f, viewPos.z)).y - 0.5f;
                 transform.position = newPos;
             }
             else if (viewPos.y > 1f)
             {
-                // Saiu por cima da câmera, volta pelo fundo
                 Vector3 newPos = transform.position;
                 newPos.y = Camera.main.ViewportToWorldPoint(new Vector3(viewPos.x, 0f, viewPos.z)).y + 0.5f;
                 transform.position = newPos;
@@ -108,9 +103,10 @@ public class TigerMovement : MonoBehaviour
         }
         else
         {
-            // Se não estiver no boss, morrer ao sair da câmera
-            if (Camera.main.WorldToViewportPoint(transform.position).y < 0f)
+            float viewY = Camera.main.WorldToViewportPoint(transform.position).y;
+            if (viewY < 0f || viewY > 1)
             {
+                ResetShields();
                 _player.Die();
             }
         }
@@ -119,6 +115,7 @@ public class TigerMovement : MonoBehaviour
     IEnumerator ActivateShield()
     {
         currentShields--;
+        PlayerPrefs.SetInt("Tiger_Shields", currentShields);
         UiController.Instance.UpdateShieldCount(currentShields);
         AudioController.instance.PlayAudio(shield);
 
@@ -130,19 +127,12 @@ public class TigerMovement : MonoBehaviour
         shieldSlider.maxValue = shieldDuration;
         shieldSlider.value = shieldDuration;
 
-        // float elapsed = 0f;
-        // while (elapsed < shieldDuration)
-        // {
-        //     elapsed += Time.deltaTime;
-        //     shieldSlider.value = shieldDuration - elapsed;
-        //     yield return null;
-        // }
         for (int i = 0; i <= shieldDuration; i++)
         {
             shieldSlider.value = shieldDuration - i;
             yield return new WaitForSeconds(1);
-
         }
+
         shieldObject.SetActive(false);
         playerCanTakeDamage = true;
         shieldActive = false;
@@ -152,20 +142,17 @@ public class TigerMovement : MonoBehaviour
 
         for (int i = 0; i <= shieldCooldown; i++)
         {
-            yield return new WaitForSeconds(i);
-            shieldSlider.value += i;
-
+            yield return new WaitForSeconds(1);
+            shieldSlider.value += 1;
         }
-
 
         shieldSlider.gameObject.SetActive(false);
         shieldOnCooldown = false;
     }
 
-
     public void SetInBoss(bool state)
     {
-        _inBoss = state;
+        _inPause = state;
     }
 
     public void CollectShield()
@@ -173,15 +160,18 @@ public class TigerMovement : MonoBehaviour
         if (currentShields < maxShields)
         {
             currentShields++;
+            PlayerPrefs.SetInt("Tiger_Shields", currentShields);
             UiController.Instance.UpdateShieldCount(currentShields);
         }
     }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (playerCanTakeDamage)
         {
-            if (other.CompareTag("Enemy") || other.CompareTag("Asteroid") || other.CompareTag("EnemyShoot") || other.CompareTag("Dust") || other.CompareTag("Boss") || other.CompareTag("Hand"))
+            if (other.CompareTag("Enemy") || other.CompareTag("Asteroid") || other.CompareTag("EnemyShoot") || other.CompareTag("Dust") || other.CompareTag("Hand"))
             {
+                ResetShields();
                 _player.Die();
             }
 
@@ -189,6 +179,12 @@ public class TigerMovement : MonoBehaviour
             {
                 other.GetComponent<Bomb>().Explode();
             }
+        }
+
+        if (other.CompareTag("BorderAsteroid") || other.CompareTag("Boss"))
+        {
+            ResetShields();
+            _player.Die();
         }
 
         if (other.CompareTag("Coin"))
@@ -205,21 +201,10 @@ public class TigerMovement : MonoBehaviour
             maxSpeed += 2;
             CameraFollow.Instance.smoothSpeed += 1;
         }
-        // if (other.CompareTag("ShieldPickup"))
-        // {
-        //     AudioController.instance.PlayAudio(shieldColect);
-        //     Destroy(other.gameObject);
-        //     if (currentShields < maxShields)
-        //     {
-        //         currentShields++;
-        //         UiController.Instance.UpdateShieldCount(currentShields);
-        //     }
-        // }
+
         if (other.CompareTag("GoBoss"))
         {
             TransitionController.Instance.LoadTransition(bossTransition, "Boss");
-            // Debug.Log("EndGame");
-
         }
     }
 
@@ -227,7 +212,19 @@ public class TigerMovement : MonoBehaviour
     {
         if (other.CompareTag("BombExplosion"))
         {
+            ResetShields();
             _player.Die();
         }
+    }
+
+    private void OnApplicationQuit()
+    {
+        ResetShields();
+    }
+
+    private void ResetShields()
+    {
+        currentShields = 0;
+        PlayerPrefs.SetInt("Tiger_Shields", 0);
     }
 }

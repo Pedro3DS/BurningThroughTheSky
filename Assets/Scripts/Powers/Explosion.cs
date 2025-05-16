@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
+    public AudioClip explosionAudio;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +19,7 @@ public class Explosion : MonoBehaviour
     }
 
     public void AutoDestroy(){
+        AudioController.instance.PlayAudio(explosionAudio);
         Destroy(gameObject);
     }
 }

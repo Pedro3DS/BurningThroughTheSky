@@ -32,7 +32,7 @@ public class UiController : MonoBehaviour
     void Start()
     {
         UpdateScore(0);
-        UpdateShieldCount(0);
+        UpdateShieldCount(PlayerPrefs.GetInt("Tiger_Shields"));
         int deaths = PlayerPrefs.GetInt("CurrentDeaths", 0);
         deathsText.text = $"{deaths}X";
     }

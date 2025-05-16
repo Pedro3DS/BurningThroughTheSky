@@ -8,6 +8,7 @@ public class FlyingShooterEnemy : MonoBehaviour
     public float fireRate = 1f;
 
     private float fireTimer;
+    [SerializeField] public Transform targetPos;
 
     void Start()
     {
@@ -38,8 +39,13 @@ public class FlyingShooterEnemy : MonoBehaviour
     void Shoot()
     {
         if (!bulletPrefab) return;
-        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-        bullet.GetComponent<Rigidbody2D>().velocity = direction * 10f;
+
+        Vector2 direction = (targetPos.position - transform.position).normalized;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        GameObject bulletInstance = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(0f, 0f, angle));
+        bulletInstance.GetComponent<EnemyBullet>().SetDirection(direction);
+        
     }
 
     void OnDestroy()

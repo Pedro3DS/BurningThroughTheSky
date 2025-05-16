@@ -194,7 +194,7 @@ public class HandController : MonoBehaviour
         if (other.CompareTag("NoteBullet"))
         {
             other.GetComponent<Bullet>().DestroyThisBullet();
-            TakeDamage(15);
+            TakeDamage(2);
         }
     }
 }

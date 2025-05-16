@@ -4,6 +4,7 @@ public class FlyingShooterSpawner : MonoBehaviour
 {
     public GameObject flyingEnemyPrefab;
     public Transform spawnPoint; // canto superior da tela, por exemplo
+    public Transform targetPoint; // canto superior da tela, por exemplo
 
     private bool triggered = false;
 
@@ -18,6 +19,6 @@ public class FlyingShooterSpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        Instantiate(flyingEnemyPrefab, spawnPoint.position, Quaternion.identity);
+        Instantiate(flyingEnemyPrefab, spawnPoint.position, Quaternion.identity).GetComponent<FlyingShooterEnemy>().targetPos = targetPoint;
     }
 }

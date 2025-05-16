@@ -26,7 +26,7 @@ public class BossController : MonoBehaviour
     public float secondMoveSpeed = 20f;
     private Transform targetPosition;
     private float waitTime = 1.2f;
-    private float secondWaitTime = 0.5f;
+    private float secondWaitTime = 0.4f;
     private float waitTimer;
 
     private bool _inSecondFase = false;
@@ -40,6 +40,7 @@ public class BossController : MonoBehaviour
 
     private bool _isDead = false;
     [SerializeField] private Transform targetPlayer;
+    [SerializeField] private GameObject coroaColect;
 
     void Start()
     {
@@ -157,7 +158,7 @@ public class BossController : MonoBehaviour
 
     private void TakeHandDamage()
     {
-        DamageBoss(25);
+        DamageBoss(2);
     }
 
     public void DamageBoss(float damage)
@@ -234,8 +235,9 @@ public class BossController : MonoBehaviour
             Instantiate(explosionPrefab, spawnPos, Quaternion.identity);
             yield return new WaitForSeconds(explosionInterval);
         }
-
+        Instantiate(coroaColect);
         Destroy(gameObject); // Ou você pode tocar uma animação de fim antes disso
+        
     }
 
     void OnTriggerEnter2D(Collider2D collision)

@@ -21,6 +21,8 @@ TagManager:
   - SpeedPickUp
   - GoBoss
   - Boss
+  - Coroa
+  - BorderAsteroid
   layers:
   - Default
   - TransparentFX

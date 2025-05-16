@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,6 +26,7 @@ public class GameManager : MonoBehaviour
  
     public string gameType = "default";
     private bool _gameWin = false;
+    public bool crownGeted = false;
 
     void Awake()
     {
@@ -38,6 +41,20 @@ public class GameManager : MonoBehaviour
             StartCoroutine(StartGameSequence());
         }else if(gameType == "boss"){
             isGameStarted = true;
+        }
+    }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.JoystickButton7) && Input.GetKeyDown(KeyCode.JoystickButton9))
+        {
+            // SceneController.instance.ExitGame();
+            Debug.Log("tghjk");
+            AsyncSceneController.Instance.ChangeScene("Menu1");
+            return;
+        }
+        if (crownGeted && Input.GetKeyDown(KeyCode.JoystickButton9))
+        {
+            AsyncSceneController.Instance.ChangeScene("Menu1");
         }
     }
 

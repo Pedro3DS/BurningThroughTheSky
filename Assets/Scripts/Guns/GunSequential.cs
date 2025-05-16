@@ -43,6 +43,7 @@ public class GunSequential : MonoBehaviour
         hasSpreadShot = true;
         PlayerPrefs.SetInt("HasSpreadShot", 1);
         PlayerPrefs.Save();
+        
     }
 
     public void Shoot(Transform target)
