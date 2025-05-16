@@ -245,7 +245,7 @@ public class BossController : MonoBehaviour
         if (_inSecondFase && collision.CompareTag("NoteBullet"))
         {
             collision.GetComponent<Bullet>().DestroyThisBullet();
-            DamageBoss(1f);
+            DamageBoss(3f);
         }
     }
 }
