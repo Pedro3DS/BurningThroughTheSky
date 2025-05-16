@@ -31,7 +31,7 @@ public class UiController : MonoBehaviour
     }
     void Start()
     {
-        UpdateScore(0);
+        UpdateScore(PlayerPrefs.GetInt("CurrentScore"));
         UpdateShieldCount(PlayerPrefs.GetInt("Tiger_Shields"));
         int deaths = PlayerPrefs.GetInt("CurrentDeaths", 0);
         deathsText.text = $"{deaths}X";
@@ -53,6 +53,7 @@ public class UiController : MonoBehaviour
     public void UpdateScore(int value)
     {
         scoreText.text = $"{value}";
+        // PlayerPrefs.GetInt("Current")
     }
 
     public void UpdateDeaths(int value)
