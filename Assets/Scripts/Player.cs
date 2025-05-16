@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public static event OnPlayerDie onPlayerDie;
     public delegate void OnPlayerGetCoint(int value);
     public static event OnPlayerGetCoint onPlayerGetCoint;
+    [SerializeField] private bool _inBoss = false;
 
     [SerializeField] private float shootCadence = 0.5f;
     private float _nextShoot = 0f;
@@ -20,7 +21,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private AudioClip[] dieAudios;
     private bool _playerDied = false;
-    
+    [SerializeField] private GameObject explosion;
 
     void Awake()
     {
@@ -59,30 +60,40 @@ public class Player : MonoBehaviour
     public void Die()
     {
         if (_playerDied) return;
+
+        Instantiate(explosion);
         _playerDied = true;
+
         AudioController.instance.PlayAudio(dieAudios[UnityEngine.Random.Range(0,dieAudios.Length-1)]);
+
         PointManager.Instance.AddDeath();
+        SetDeath();
         PointManager.Instance.ResetPoints();
-        
+
         DestroyPlayer();
         onPlayerDie?.Invoke();
         Player.onPlayerDie = null;
     }
 
-    private void SetDeath(){
-        if(PlayerPrefs.HasKey("CurrentDeaths")){
-            int deaths =  PlayerPrefs.GetInt("CurrentDeaths");
-            PlayerPrefs.SetInt("CurrentDeaths", deaths++);
-        }else{
+    private void SetDeath()
+    {
+        if (PlayerPrefs.HasKey("CurrentDeaths"))
+        {
+            int deaths = PlayerPrefs.GetInt("CurrentDeaths");
+            PlayerPrefs.SetInt("CurrentDeaths", deaths + 1);
+        }
+        else
+        {
             PlayerPrefs.SetInt("CurrentDeaths", 1);
 
         }
+        PlayerPrefs.Save();
     }
 
     private void DestroyPlayer()
     {
 
-        TransitionController.Instance.LoadTransition(dieTransition, "Game");
+        TransitionController.Instance.LoadTransition(dieTransition, _inBoss?"Boss": "Game");
         // SceneController.instance.ChangeScene("Game");
     }
 

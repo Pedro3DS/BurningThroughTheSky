@@ -19,6 +19,8 @@ TagManager:
   - Hand
   - ShieldPickup
   - SpeedPickUp
+  - GoBoss
+  - Boss
   layers:
   - Default
   - TransparentFX

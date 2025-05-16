@@ -9,24 +9,33 @@ public class SceneController : MonoBehaviour
 
     void Awake()
     {
-        if(!instance){
+        if (!instance)
+        {
             instance = this;
-        }else{
+        }
+        else
+        {
             Destroy(instance);
         }
     }
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
-    public void ChangeScene(string scene){
+    public void ChangeScene(string scene)
+    {
         SceneManager.LoadScene(scene);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }

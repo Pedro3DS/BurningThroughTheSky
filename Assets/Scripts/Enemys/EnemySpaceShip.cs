@@ -29,6 +29,9 @@ public class EnemySpaceShip : MonoBehaviour
 
     [SerializeField] private GameObject explosion;
 
+    public delegate void EnemyDeath();
+    public event EnemyDeath onEnemyDeath;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
@@ -136,11 +139,11 @@ public class EnemySpaceShip : MonoBehaviour
             // Notifica o manager da morte
             if (_manager)
                 _manager?.NotifyEnemyDeath(gameObject);
-
+                
+            onEnemyDeath?.Invoke();
             Instantiate(explosion, transform.position, Quaternion.identity);
             Destroy(gameObject);
             // GetComponent<Animator>().SetTrigger("Die");
         }
     }
-    
 }

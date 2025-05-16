@@ -14,9 +14,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float[] countDownScale;
     [SerializeField] private float[] countDownSize;
     [SerializeField] private GameObject explosionIntro;
+    [SerializeField] private AudioClip countDown;
+    [SerializeField] private AudioClip endCountDown;
 
     public delegate void OnGameStarted();
     public static event OnGameStarted onGameStarted;
+
+
  
     public string gameType = "default";
     private bool _gameWin = false;
@@ -41,12 +45,16 @@ public class GameManager : MonoBehaviour
     {
         uiController.ShowCountdown("3", countDownColors[0],countDownScale[0],countDownSize[0]);
         yield return new WaitForSeconds(1f);
+        AudioController.instance.PlayAudio(countDown);
         uiController.ShowCountdown("2",countDownColors[1],countDownScale[1],countDownSize[1]);
         yield return new WaitForSeconds(1f);
+        AudioController.instance.PlayAudio(countDown);
         uiController.ShowCountdown("1",countDownColors[2],countDownScale[2],countDownSize[2]);
         yield return new WaitForSeconds(1f);
+        AudioController.instance.PlayAudio(countDown);
         uiController.ShowCountdown("VAI!",countDownColors[3],countDownScale[3],countDownSize[3]);
         yield return new WaitForSeconds(1f);
+        AudioController.instance.PlayAudio(endCountDown);
         Instantiate(explosionIntro);
         uiController.HideCountdown();
         

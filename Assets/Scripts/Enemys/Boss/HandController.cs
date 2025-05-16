@@ -34,15 +34,26 @@ public class HandController : MonoBehaviour
 
     private bool _canTakeDamage = true;
 
+    private bool _initialSpinComplete = false;
+
+    [SerializeField] private GameObject drop;
+
+    void Start()
+    {
+        StartCoroutine(InitialSpin());
+    }
+
     void Update()
     {
+        if (!_initialSpinComplete) return;
+
         dashTimer += Time.deltaTime;
         shootTimer += Time.deltaTime;
 
         switch (currentState)
         {
             case HandState.Idle:
-                RotateTowardsPlayer(); // ← Rotaciona suavemente para o jogador
+                RotateTowardsPlayer();
 
                 if (dashTimer >= dashCooldown)
                 {
@@ -64,6 +75,20 @@ public class HandController : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    IEnumerator InitialSpin()
+    {
+        float duration = 2f;
+        float timer = 0f;
+        while (timer < duration)
+        {
+            transform.Rotate(0, 0, 360 * Time.deltaTime);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        _initialSpinComplete = true;
     }
 
     void ChooseAction()
@@ -114,6 +139,11 @@ public class HandController : MonoBehaviour
         if (chance < 0.3f)
         {
             Instantiate(laserPrefab, transform.position, Quaternion.identity);
+            Vector2 direction = (player.position - transform.position).normalized;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+            GameObject bulletInstance = Instantiate(laserPrefab , transform.position, Quaternion.Euler(0f, 0f, angle));
+            bulletInstance.GetComponent<EnemyBullet>().SetDirection(direction);
         }
         else
         {
@@ -127,37 +157,44 @@ public class HandController : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
-    void DestroyHand(){
+
+    void DestroyHand()
+    {
         Instantiate(explosion, transform.position, Quaternion.identity);
+        Instantiate(drop, transform.position, Quaternion.identity);
+        Instantiate(drop, transform.position, Quaternion.identity);
         AudioController.instance.PlayAudio(explosionSound);
         Destroy(gameObject);
     }
+
     public void TakeDamage(float amount)
     {
-        if(life - amount <= 0 && _canTakeDamage){
+        if (life - amount <= 0 && _canTakeDamage)
+        {
             onHandDestroy?.Invoke();
             DestroyHand();
             return;
         }
         life -= amount;
         StartCoroutine(Damaged());
-        // Aqui você pode implementar a vida da mão se quiser
     }
 
-    IEnumerator Damaged(){
+    IEnumerator Damaged()
+    {
         _canTakeDamage = false;
         GetComponent<SpriteRenderer>().color = Color.red;
         onTakeDamage?.Invoke();
         yield return new WaitForSeconds(.5f);
         GetComponent<SpriteRenderer>().color = Color.white;
-        _canTakeDamage= true;
+        _canTakeDamage = true;
     }
+
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("NoteBullet")){
+        if (other.CompareTag("NoteBullet"))
+        {
             other.GetComponent<Bullet>().DestroyThisBullet();
             TakeDamage(15);
         }
     }
-
 }

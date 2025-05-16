@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.Serialization.Formatters;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,6 +20,10 @@ public class UiController : MonoBehaviour
 
 
     public static UiController Instance = null;
+    private bool isShuttingDown = false;
+
+    void OnApplicationQuit() => isShuttingDown = true;
+    void OnDestroy() => isShuttingDown = true;
     void Awake()
     {
         if (!Instance) Instance = this;
@@ -30,10 +32,9 @@ public class UiController : MonoBehaviour
     void Start()
     {
         UpdateScore(0);
-        // UpdateDeaths(0);
-        // if (PlayerPrefs.HasKey("CurrentDeaths"))
-        //     deathsText.text = $"{PlayerPrefs.GetInt("CurrentDeaths")}X";
-        // else deathsText.text = $"0X";
+        UpdateShieldCount(0);
+        int deaths = PlayerPrefs.GetInt("CurrentDeaths", 0);
+        deathsText.text = $"{deaths}X";
     }
     void OnEnable()
     {
@@ -76,10 +77,18 @@ public class UiController : MonoBehaviour
 
     public void UpdatePoints()
     {
+        if (isShuttingDown) return;
         int targetPoints = PointManager.Instance.GetPoints();
-        leftPointEffect.SetTrigger("GetPoint");
-        rightPointEffect.SetTrigger("GetPoint");
-        if (_pointAnimCoroutine != null) StopCoroutine(_pointAnimCoroutine);
+
+        if (leftPointEffect != null && leftPointEffect.gameObject != null)
+            leftPointEffect.SetTrigger("GetPoint");
+
+        if (rightPointEffect != null && rightPointEffect.gameObject != null)
+            rightPointEffect.SetTrigger("GetPoint");
+
+        if (_pointAnimCoroutine != null)
+            StopCoroutine(_pointAnimCoroutine);
+
         _pointAnimCoroutine = StartCoroutine(AnimatePoints(targetPoints));
     }
 
@@ -125,5 +134,5 @@ public class UiController : MonoBehaviour
     // {
     //     return coinAmount; // ou como você armazenar as moedas
     // }
-    
+
 }

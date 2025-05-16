@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5157708270418176220}
   - component: {fileID: 1183165950743895323}
   - component: {fileID: 415786723982277630}
+  - component: {fileID: -5764411250454463800}
   m_Layer: 0
   m_Name: ShieldPickup
   m_TagString: ShieldPickup
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 6884244618224329939, guid: ee3493e83ca9d184f8682c0272d4f114, type: 3}
-  m_Color: {r: 1, g: 0.8233118, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -136,3 +137,15 @@ PolygonCollider2D:
       - {x: 0.16, y: 0.07}
       - {x: 0.16, y: 0.14999999}
   m_UseDelaunayMesh: 0
+--- !u!114 &-5764411250454463800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2457412669460201033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f35397c57ef41cc4ba18c703ddd25579, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
